@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Specify the range of ports to try
-const startPort = 3000;
+const startPort = 8000;
 const endPort = 4000;
 
 // Function to find an available port
