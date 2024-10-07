@@ -19,21 +19,36 @@ body {
     color: #939ba2;
   }
  
-  .main-sidebar {
-    width: 250px;
-    height: 100vh;
-    transition: width 0.3s ease;
-  }
- 
-  .main-sidebar.closed {
-    width: 55px;
-    height: 100vh;
-  }
- 
-  .sidebar {
-    overflow-x: hidden;
-    padding-right: .5rem;
-  }
+  /* Sidebar and navigation styles */
+ .main-sidebar {
+  width: 280px;
+  height: 100vh;
+  transition: width 0.3s ease;
+}
+
+.main-sidebar.closed {
+  width: 55px;
+}
+
+.sidebar {
+  overflow-y: auto;
+  position: fixed;
+  padding-right: 0.5rem;
+}
+
+a {
+  color: inherit; /* Default link color */
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+}
+
+a.active {
+  color: #007bff; /* Text color for active link */
+  background-color: black; /* Background color for active link */
+}
+
+
   .nav-sidebar .nav-item .nav-link {
     margin-bottom: .5rem;
     display: flex;

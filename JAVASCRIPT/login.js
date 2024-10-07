@@ -22,9 +22,11 @@ async function loginUser(event) {
             },
             body: JSON.stringify({ officeEmail: emailInput, enterPassword: passwordInput }),
         });
-
+    
         if (response.ok) {
             const result = await response.json();
+            console.log('API Response:', result);
+           
               // Check if user and roleName are defined
               if (!result.user || !result.user.roleName) {
                 console.error('Login response does not contain user or role');
@@ -40,7 +42,22 @@ async function loginUser(event) {
             }
 
             // Successful login
-            resultElement.innerText = 'Login successful';
+            // resultElement.innerText = 'Login successful';
+        //     const result = await response.json();
+        // console.log('API Response:', result);
+        // console.log('Raw response:', await response.text());
+
+        
+            const token = result.token; // Get the token from the user object
+            if (!token) {
+                console.error('Token is undefined in the response');
+                resultElement.innerText = 'Login failed: token not received.';
+                return;
+            }
+            console.log('Login successful, token:', token);
+    
+            // Store the token in local storage
+            localStorage.setItem('authToken', token);
             localStorage.setItem('loggedInUser', JSON.stringify(result.user));
             sessionStorage.setItem('userId', result.user._id);  // Corrected field
             sessionStorage.setItem('fullName', result.user.fullName);  // Corrected field
@@ -62,19 +79,20 @@ async function loginUser(event) {
                         break;
                 default:
                     resultElement.innerText = 'Invalid role';
+                }
+            } else {
+                const errorText = await response.text(); // Read response as plain text
+                resultElement.innerText = 'Invalid email or password';
+                console.error('Login failed:', errorText);
             }
-        } else {
-            const errorText = await response.text(); // Read response as plain text
-            resultElement.innerText = 'Invalid email or password';
-            console.error('Login failed:', errorText);
+        } catch (error) {
+            console.error('Error during login:', error);
+            resultElement.innerText = 'An error occurred during login. Please try again later.';
+        } finally {
+            // Optionally hide the loading indicator
         }
-    } catch (error) {
-        console.error('Error during login:', error);
-        resultElement.innerText = 'An error occurred during login. Please try again later.';
-    } finally {
-        // Optionally hide the loading indicator
     }
-}
+    
 window.addEventListener('load', function () {
     // Add a new entry to the browser's history
     window.history.pushState(null, null, window.location.href);
@@ -85,3 +103,4 @@ window.addEventListener('load', function () {
         window.history.pushState(null, null, window.location.href);
     });
 });
+    

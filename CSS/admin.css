@@ -4,9 +4,7 @@ body {
     font-weight: 400;
     background-color:mintcream;
   }
-  table{
-    background-color: red;
-  }
+  
   a {
     text-decoration: none;
   }
@@ -18,6 +16,7 @@ body {
   .form-control::-webkit-input-placeholder {
     color: #939ba2;
   }
+  
   
  /* Sidebar and navigation styles */
  .main-sidebar {
@@ -47,6 +46,7 @@ a.active {
   color: #007bff; /* Text color for active link */
   background-color: black; /* Background color for active link */
 }
+
 
   .nav-sidebar .nav-item .nav-link {
     margin-bottom: .5rem;
@@ -309,6 +309,4 @@ a.active {
     padding-left: 20px;
     padding-right: 20px;
   }
-  .table th, .table td{
-    background-color:mintcream;
-  }
+  
