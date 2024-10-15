@@ -15,7 +15,7 @@
     <div class="sidebar">
       <div class="user-panel mt-3 pb-3">
         <div class="image">
-          <img class="image" src="../IMAGES/bodhtree-logo.png" alt="Bodhtree logo" />
+          <img class="image" src="../IMAGES/bodhtree-logo.png" alt="Bodhtree logo"/>
         </div>
       </div>
       <div class="form-inline search-container">
@@ -59,7 +59,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="./resource.html" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>Resources</p>
             </a>
@@ -90,7 +90,7 @@
           </li>
         </ul>
     
-        <ul class="navbar-nav ml-auto">
+        <!-- <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <a class="nav-link" data-widget="navbar-search" href="#" role="button">
               <i class="fas fa-search"></i>
@@ -111,7 +111,7 @@
               <i class="fas fa-th-large"></i>
             </a>
           </li>
-        </ul>
+        </ul> -->
       </nav>
       <div class="container-fluid">
         <div class="container">
@@ -119,202 +119,325 @@
             <form id="employeeForm">
               <div class="row mb-2">
                 <div class="col-sm-6">
-                  <label for="firstName" class="col-form-label">First Name</label>
-                  <input type="text" class="form-control" id="firstName" required>
-                </div>
-                <div class="col-sm-6">
-                  <label for="lastName" class="col-form-label">Last Name</label>
-                  <input type="text" class="form-control" id="lastName" required>
-                </div>
-              </div>
-              <div class="row mb-2">
-                <div class="col-sm-6">
-                  <label for="dateOfJoining" class="col-form-label">Date of Joining</label>
-                  <input type="date" class="form-control" id="dateOfJoining" required>
-                </div>
-                <div class="col-sm-6">
-                  <label for="employmentType" class="col-form-label">Employment Type</label>
-                  <select class="form-control" id="workType" required>
-                    <option value="---Select---">---Select---</option>
-                    <option value="fullTime">Full Time</option>
+                <label for="employeeNumber">Employee Number <span class="mandatory">*</span></label>
+                <input type="text" id="employeeNumber" name="employeeNumber" class="form-control"  required>
+            </div>
+            <div class="col-sm-6">
+                <label for="photo">Profile Photo </label>
+                <input type="file" id="photo" name="photo" class="form-control" >
+            </div>
+        </div>
+
+        <!-- First Name, Last Name -->
+        <div class="row mb-2">
+          <div class="col-sm-6">
+                <label for="firstName">First Name <span class="mandatory">*</span></label>
+                <input type="text" id="firstName" name="firstName" class="form-control" required>
+            </div>
+            <div class="col-sm-6">
+                <label for="lastName">Last Name <span class="mandatory">*</span></label>
+                <input type="text" id="lastName" name="lastName" class="form-control" required>
+            </div>
+        </div>
+
+        <!-- Date of Joining, Employee Type -->
+        <div class="row mb-2">
+          <div class="col-sm-6">
+                <label for="dateOfJoining">Date of Joining <span class="mandatory">*</span></label>
+                <input type="date" id="dateOfJoining" name="dateOfJoining" class="form-control" required>
+            </div>
+            <div class="col-sm-6">
+                <label for="employmentType">Employment Type <span class="mandatory">*</span></label>
+                <select id="employmentType" name="employmentType" class="form-control" required>
+                  <option value="" disabled selected>Select</option>
+                    <option value="full-time">Full-time</option>
+                    <option value="part-time">Part-time</option>
                     <option value="contract">Contract</option>
-                  </select>
-                </div>
-              </div>
-              <div class="row mb-2">
-                <div class="col-sm-6">
-                  <label for="probationPeriod" class="col-form-label">Probation Period (Days)</label>
-                  <select class="form-control" id="probationPeriod" required>
-                    <option value="---Select---">---Select---</option>
-                    <option value="30">30 Days</option>
-                    <option value="60">60 Days</option>
-                    <option value="90">90 Days</option>
-                  </select>
-                </div>
-                <div class="col-sm-6">
-                  <label for="confirmationDate" class="col-form-label">Confirmation Date</label>
-                  <input type="date" class="form-control" id="confirmationDate" required>
-                </div>
-              </div>
-              <div class="row mb-2">
-                <div class="col-sm-6">
-                  <label for="department" class="col-form-label">Department</label>
-                  <select class="form-control" id="department" required>
-                    <option value="---Select---">---Select---</option>
-                    <option value="Development">Development</option>
-                    <option value="IT">IT</option>
-                    <option value="Hiring">HR</option>
-                    <option value="Sales">Sales</option>
-                  </select>
-                </div>
-                <div class="col-sm-6">
-                  <label for="designation" class="col-form-label">Designation</label>
-                  <input type="text" class="form-control" id="designation" required>
-                </div>
-              </div>
-              <div class="row mb-2">
-              <div class="col-sm-6">
-                <label for="designation" class="col-form-label">Employee Numer</label>
-                <input type="text" class="form-control" id="employeeNumber" required>
-              </div>
-                <div class="col-sm-6">
-                  <label for="reportingTo" class="col-form-label">Reporting To</label>
-                  <select class="form-control" id="reportsTo" required>
-                    <option value="---Select---">---Select---</option>
-                    <option value="Manager1">Nirvigna</option>
-                    <option value="Manager2">Pruthvi</option>
-                    <option value="Manager2">Pruthvi Krishna</option>
-                    <option value="Manager2">Tulasi</option>
-                  </select>
-                  </div>
-                </div>
-                <div class="row mb-2">
-                <div class="col-sm-6">
-                  <label for="workLocation" class="col-form-label">Work Location</label>
-                  <select class="form-control" id="workLocation" required>
-                    <option value="---Select---">---Select---</option>
-                    <option value="Manager1">Hyderabad</option>
-                    <option value="Manager2">USA</option>
-                    <option value="Manager2">TEXAS</option>
-                    <option value="Manager2">SINGAPORE</option>
-                  </select>
-                </div>
-                <div class="col-sm-6">
-                  <label for="officeEmail" class="col-form-label">Office Email</label>
-                  <input type="email" class="form-control" id="officeEmail" required>
-                </div>  
-              </div>
-                <div class="row mb-2">              
-                   <div class="col-sm-6">
-                    <label for="enterPassword" class="col-form-label">Enter Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Password" required>
-                </div>
-                <div class="col-sm-6">
-                  <label for="role" class="col-form-label">Role</label>
-                  <select class="form-control" id="roleName" required>
-                    <option value="---Select---">---Select---</option>
-                    <option value="Employee">Employee</option>
+                    <option value="permanent">Permanent</option>
+                    <option value="contract">Contract</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Probation Period, Confirmation Date -->
+        <div class="row mb-2">
+          <div class="col-sm-6">
+                <label for="probationPeriod">Probation Period (days) <span class="mandatory">*</span></label>
+                <select id="probationPeriod" name="probationPeriod" class="form-control" required>
+                  <option value="" disabled selected>Select</option>
+                    <option value="30">30</option>
+                    <option value="60">60</option>
+                    <option value="90">90</option>
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <label for="confirmationDate">Confirmation Date <span class="mandatory">*</span></label>
+                <input type="date" id="confirmationDate" name="confirmationDate" class="form-control" required>
+            </div>
+        </div>
+
+        <!-- Department, Designation -->
+        <div class="row mb-2">
+          <div class="col-sm-6">
+                <label for="department">Department <span class="mandatory">*</span></label>
+                <select id="department" name="department" class="form-control" required>
+                  <option value="" disabled selected>Select Department</option>
+                    <option value="Operations">Operations</option>
+                    <option value="US Finance">US Finance</option>
+                    <option value="IT Projects">IT Projects</option>
+                    <option value="Administration">Administration</option>
+                    <option value="US Staffing">US Staffing</option>
+                    <option value="APAC Sales">APAC Sales</option>
+                    <option value="Recruitments">Recruitments</option>
+                    <option value="APAC HR">APAC HR</option>
+                    <option value="US HR">US HR</option>
+                    <option value="Marketing">Marketing</option>
+                </select>
+            </div>
+            <div class="col-sm-6">
+              <label for="designation">Designation <span class="mandatory">*</span></label>
+              <select id="designation" name="designation" class="form-control" required>
+                  <option value="" disabled selected>Select Designation</option>
+                  <option value="Whole time Director & CEO">Whole time Director & CEO</option>
+                  <option value="Sr.Finance Executive">Sr. Finance Executive</option>
+                  <option value="Finance Manager">Finance Manager</option>
+                  <option value="Software Consultant">Software Consultant</option>
+                  <option value="Assistant">Assistant</option>
+                  <option value="Sr US IT Recruiter">Sr US IT Recruiter</option>
+                  <option value="Director Sales">Director Sales</option>
+                  <option value="Talent Acquisition Executive">Talent Acquisition Executive</option>
+                  <option value="Sr HR Manager- APAC">Sr HR Manager- APAC</option>
+                  <option value="Talent Acquisition Specialist">Talent Acquisition Specialist</option>
+                  <option value="Jr.Software Engineer">Jr. Software Engineer</option>
+                  <option value="Network Administrator">Network Administrator</option>
+                  <option value="Whole time Director">Whole time Director</option>
+                  <option value="IT Manager">IT Manager</option>
+                  <option value="US IT Recruiter">US IT Recruiter</option>
+                  <option value="Asst Manager Talent Acquisition">Asst Manager Talent Acquisition</option>
+                  <option value="Sr Recruitment Manager">Sr Recruitment Manager</option>
+                  <option value="Digital Marketing Manager">Digital Marketing Manager</option>
+                  <option value="Director-HR Opr">Director-HR Opr</option>
+                  <option value="Sr Talent Acquisition Executive">Sr Talent Acquisition Executive</option>
+                  <option value="Program Manager">Program Manager</option>
+                  <option value="Company Secretary">Company Secretary</option>
+                  <option value="Marketing Executive">Marketing Executive</option>
+                  <option value="Senior Sales Executive">Senior Sales Executive</option>
+                  <option value="Director">Director</option>
+                  <option value="Administrative Lead">Administrative Lead</option>
+                  <option value="Sr Administrative Executive">Sr Administrative Executive</option>
+                  <option value="Administrative Executive">Administrative Executive</option>
+                  <option value="Finance Executive">Finance Executive</option>
+                  <option value="Network Administrator">Network Administrator</option>
+                  <option value="Business Development Executive">Business Development Executive</option>
+              </select>
+          </div>
+        </div>  
+  <!-- Reporting To, Work Location -->
+  <div class="row mb-2">
+    <div class="col-sm-6">
+            <label for="reportingTo">Reporting To <span class="mandatory">*</span></label>
+            <select id="reportingTo" name="reportingTo" class="form-select" class="form-control" required>
+                <option value="" disabled selected>Select Manager</option>
+                <option value="Prashanth">Prashanth</option>
+                <option value="Pruthvi">Pruthvi</option>
+                <option value="Naga Sudha">Naga Sudha</option>
+                <option value="Nirvigna">Nirvigna</option>
+                <option value="Shishir">Shishir</option>
+                <option value="Swapna">Swapna</option>
+                <option value="Vara Prasad">Vara Prasad</option>
+                <option value="Afsana">Afsana</option>
+            </select>
+        </div>
+        
+        <div class="col-sm-6">
+          <label for="workLocation">Work Location <span class="mandatory">*</span></label>
+          <select id="workLocation" name="workLocation" class="form-control" required>
+              <option value="" disabled selected>Select Work Location</option>
+              <option value="India">India</option>
+              <option value="USA">USA</option>
+              <option value="Singapore">Singapore</option>
+          </select>
+      </div>
+</div>      
+        <!-- Role, Company -->
+        <div class="row mb-2">
+          <div class="col-sm-6">
+                <label for="role">Role <span class="mandatory">*</span></label>
+                <select id="role" name="role" class="form-control" required>
+                  <option value="" disabled selected>Select Role</option>
+                  <option value="Super-Admin">Super-Admin</option>
                     <option value="Admin">Admin</option>
-                    <option value="Admin">Sales</option>
-                    <option value="Admin">Manager</option>
-                  </select>
-                </div>
-              </div>
-              <div class="row mb-2">
-                <div class="col-sm-6">
-                  <label for="salary" class="col-form-label">Salary CTC</label>
-                  <input type="number" class="form-control" id="annual_ctc" required>
-                </div>
-                <div class="col-sm-6">
-                  <label for="grade" class="col-form-label">Grade</label>
-                  <select class="form-control" id="grade" required>
-                    <option value="---Select---">---Select---</option>
-                    <option value="A">A</option>
-                    <option value="B">B</option>
-                    <option value="C">C</option>
-                    <option value="A">D</option>
-                    <option value="B">E</option>
-                    <option value="C">F</option>
-                  </select>
-                </div>
-                </div>
-                <div class="row mb-2">
-                <div class="col-sm-6">
-                  <label for="mobile" class="col-form-label">Mobile Number</label>
-                  <input type="tel" class="form-control" id="mobileNo" required>
-                </div>
-                <div class="col-sm-6">
-                  <label for="personalEmail" class="col-form-label">Personal Email ID</label>
-                  <input type="email" class="form-control" id="personal_Email" required>
-                </div>
-              </div>
-                <div class="row mb-2">
-                <div class="col-sm-6">
-                  <label for="currentAddress" class="col-form-label">Current Address</label>
-                  <input type="text" class="form-control" id="currentAddress" required>
-                </div>
-                <div class="col-sm-6">
-                  <label for="permanentAddress" class="col-form-label">Permanent Address</label>
-                  <input type="text" class="form-control" id="permanentAddress" required>
-                </div>
-              </div>
-                <div class="row mb-2">
-                <div class="col-sm-6">
-                  <label for="status" class="col-form-label">Status</label>
-                  <select class="form-control" id="status" required>
-                    <option value="---Select---">---Select---</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Employee">Employee</option>
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <label for="company">Company <span class="mandatory">*</span></label>
+                <select id="company" name="company" class="form-control" required>
+                  <option value="" disabled selected>Select Company</option>
+                    <option value="Bodhtree">Bodhtree</option>
+                    <option value="OtherCompany">OtherCompany</option>
+                </select>
+            </div>
+        </div>
+        <!-- Office Email ID, Password -->
+        <div class="row mb-2">
+          <div class="col-sm-6">
+                <label for="officeEmail">Office Email ID <span class="mandatory">*</span></label>
+                <input type="email" id="officeEmail" name="officeEmail" class="form-control" required>
+            </div>
+            <div class="col-sm-6">
+                <label for="password">Password <span class="mandatory">*</span></label>
+                <input type="password" id="password" name="password" class="form-control" required>
+            </div>
+        </div>
+
+        <!-- Salary CTC, Grade -->
+        <div class="row mb-2">
+          <div class="col-sm-6">
+                <label for="salary">Salary CTC <span class="mandatory">*</span></label>
+                <input type="text" id="salary" name="salary" class="form-control" required>
+            </div>
+            <div class="col-sm-6">
+                <label for="grade">Grade <span class="mandatory">*</span></label>
+                <select id="grade" name="grade" class="form-control" required>
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                  <option value="A">D</option>
+                  <option value="B">E</option>
+                  <option value="C">F</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Personal Email ID, Mobile Number -->
+        <div class="row mb-2">
+          <div class="col-sm-6">
+                <label for="personalEmail">Personal Email ID <span class="mandatory">*</span></label>
+                <input type="email" id="personalEmail" name="personalEmail" class="form-control" required>
+            </div>
+            <div class="col-sm-6">
+                <label for="mobileNumber">Mobile Number <span class="mandatory">*</span></label>
+                <input type="tel" id="mobileNumber" name="mobileNumber" class="form-control" required>
+            </div>
+        </div>
+
+        <!-- Current Address, Permanent Address -->
+        <div class="row mb-2">
+          <div class="col-sm-6">
+                <label for="currentAddress">Current Address</label>
+                <input type="text" id="currentAddress" name="currentAddress" class="form-control" >
+            </div>
+            <div class="col-sm-6">
+                <label for="permanentAddress">Permanent Address </label>
+                <input type="text" id="permanentAddress" name="permanentAddress" class="form-control">
+            </div>
+        </div>
+
+        <!-- Marital Status, Aadhar Number -->
+        <div class="row mb-2">
+          <div class="col-sm-6">
+                <label for="maritalStatus">Marital Status</label>
+                <select id="maritalStatus" name="maritalStatus" class="form-control">
+                  <option value="" disabled selected>Select</option>
                     <option value="Married">Married</option>
                     <option value="Unmarried">Unmarried</option>
-                  </select>
-                </div>
-                <div class="col-sm-6">
-                  <label for="aadhaarNumber" class="col-form-label">Aadhaar Number</label>
-                  <input type="text" class="form-control" id="aadhaarNumber" required>
-                </div>
-              </div>
-              <div class="row mb-2">
-                <div class="col-sm-6">
-                  <label for="panNumber" class="col-form-label">PAN Number</label>
-                  <input type="text" class="form-control" id="panNumber" required>
-              </div>
-                <div class="col-sm-6">
-                  <label for="pfNumber" class="col-form-label">PF Number</label>
-                  <input type="text" class="form-control" id="pfNumber">
-                </div>
-              </div>
-              <div class="row mb-2">
-                <div class="col-sm-6">
-                  <label for="uanNumber" class="col-form-label">UAN Number</label>
-                  <input type="text" class="form-control" id="uanNumber">
-                </div>
-                <div class="col-sm-6">
-                  <label for="bankAccountNumber" class="col-form-label">Bank Account Number</label>
-                  <input type="text" class="form-control" id="bankAccountNumber" required>
-                </div>
-                </div>
-                <div class="col-sm-6">
-                  <label for="companyName" class="col-form-label">Company Name</label>
-                  <select class="form-control" id="company" required>
-                    <option value="---Select---">---Select---</option>
-                    <option value="Bodhtree">Bodhtree</option>
-                    <option value="OtherCompany">Other Company</option>
-                  </select>
-                </div>
-              </div>
-              <div class="buttons" style="margin-top: 20px;">
-                <button type="button" class="btn btn-secondary" onclick="window.location.href='#';">&laquo; Edit</button>
-                <button type="submit" class="btn btn-success" style="margin-left: 25px;">Submit</button>
-              </div>
-            </form>
-          </div>
+                    <option value="Widow">Widow</option>
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <label for="aadharNumber">Aadhar Number</label>
+                <input type="text" id="aadharNumber" name="aadharNumber" class="form-control">
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
- </div>
 
- <script src="../JAVASCRIPT/addemployee.js"></script>
- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
- </body>
- </html>
+        <!-- PAN Number, PF Number -->
+        <div class="row mb-2">
+          <div class="col-sm-6">
+                <label for="panNumber">PAN Number</label>
+                <input type="text" id="panNumber" name="panNumber" class="form-control">
+            </div>
+            <div class="col-sm-6">
+                <label for="pfNumber">PF Number</label>
+                <input type="text" id="pfNumber" name="pfNumber" class="form-control" >
+            </div>
+        </div>
+
+        <!-- UAN Number, Bank Account Number -->
+        <div class="row mb-2">
+          <div class="col-sm-6">
+                <label for="uanNumber">UAN Number</label>
+                <input type="text" id="uanNumber" name="uanNumber" class="form-control">
+            </div>
+            <div class="col-sm-6">
+                <label for="bankAccountNumber">Bank Account Number</label>
+                <input type="text" id="bankAccountNumber" name="bankAccountNumber" class="form-control" >
+            </div>
+            </div>
+            <div class="row mb-2">
+            <div class="col-sm-6">
+                <label for="bankName">Bank Name </label>
+                <input type="text" id="bankName" name="bankName" class="form-control" >
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group row allow-employee">
+                <label for="allowEmployeeFill">Allow Employee to Fill <span class="mandatory">*</span></label>
+            </div>
+            <div class="dropdown" id="fieldDropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                  Choose Fields
+              </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="fieldCheckboxes">
+                          <li class="dropdown-item">
+                                <input type="checkbox" value="profilePhoto" class="form-check-input"> Profile Photo
+                            </li>
+                            <li class="dropdown-item">
+                                <input type="checkbox" value="currentAddress" class="form-check-input"> Current Address
+                            </li>
+                            <li class="dropdown-item">
+                                <input type="checkbox" value="permanentAddress" class="form-check-input"> Permanent Address
+                            </li>
+                            <li class="dropdown-item">
+                                <input type="checkbox" value="maritalStatus" class="form-check-input"> Marital Status
+                            </li>
+                            <li class="dropdown-item">
+                                <input type="checkbox" value="aadharNumber" class="form-check-input"> Aadhar Number
+                            </li>
+                            <li class="dropdown-item">
+                                <input type="checkbox" value="panNumber" class="form-check-input"> PAN Number
+                            </li>
+                            <li class="dropdown-item">
+                                <input type="checkbox" value="pfNumber" class="form-check-input"> PF Number
+                            </li>
+                            <li class="dropdown-item">
+                                <input type="checkbox" value="uanNumber" class="form-check-input"> UAN Number
+                            </li>
+                            <li class="dropdown-item">
+                                <input type="checkbox" value="bankAccountNumber" class="form-check-input"> Bank Account Number
+                            </li>
+                            <li class="dropdown-item">
+                                <input type="checkbox" value="bankName" class="form-check-input"> Bank Name
+                            </li>
+                        </ul>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                  </div>
+
+        <div class="buttons">
+          <button type="button" id="editButton" class="btn btn-info">Edit</button>
+          <button type="submit" id="submitButton" class="btn btn-primary">Submit</button>
+          <button type="button" id="nextButton" class="btn btn-info">Next</button>
+      </div>
+      
+    </form>
+</div>
+
+<script src="../JAVASCRIPT/addemployee.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

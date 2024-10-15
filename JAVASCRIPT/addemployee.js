@@ -1,146 +1,156 @@
-// Function to post employee details
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) {
+        return parts.pop().split(';').shift();
+    }
+    return null;
+}
+
+function decodeJWT(token) {
+    try {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        return payload;
+    } catch (error) {
+        console.error('Failed to decode JWT token:', error);
+        return null;
+    }
+}
+
+function updateConfirmationDate() {
+    const dateOfJoiningInput = document.getElementById('dateOfJoining');
+    const probationPeriodInput = document.getElementById('probationPeriod');
+    const confirmationDateInput = document.getElementById('confirmationDate');
+
+    const dateOfJoining = new Date(dateOfJoiningInput.value);
+    const probationPeriod = parseInt(probationPeriodInput.value, 10);
+
+    if (!isNaN(dateOfJoining.getTime()) && !isNaN(probationPeriod) && probationPeriod >= 0) {
+        const confirmationDate = new Date(dateOfJoining);
+        confirmationDate.setDate(confirmationDate.getDate() + probationPeriod);
+        confirmationDateInput.value = confirmationDate.toISOString().split('T')[0];
+    } else {
+        confirmationDateInput.value = '';
+    }
+}
+
+document.getElementById('dateOfJoining')?.addEventListener('change', updateConfirmationDate);
+document.getElementById('probationPeriod')?.addEventListener('change', updateConfirmationDate);
+
 function postEmployeeDetails(event) {
-    console.log('Form submission initiated'); 
-    event.preventDefault(); // Prevent default form submission
-   
-    console.log('Default form submission prevented.');
+    event.preventDefault();
 
-    const token = localStorage.getItem('authToken'); // Retrieve token from localStorage
-
+    const token = getCookie('authToken');
     if (!token) {
-        console.error('No token found, authorization denied.');
         alert('Authorization failed. Please log in again.');
         return;
     }
 
-    console.log('Authorization Token:', token);
+    const payload = decodeJWT(token);
+    if (!payload || payload.exp < Date.now() / 1000) {
+        alert('Session has expired. Please log in again.');
+        return;
+    }
 
-    // Mock token generator (since there was an error previously)
-    // const token = Math.random().toString(36).substring(2); // Simple token generation for example purposes
-
-    // Gather input values
-    const firstName = document.getElementById('firstName').value.trim(); // Trim to avoid unnecessary spaces
-    const lastName = document.getElementById('lastName').value.trim();
-    const fullName = `${firstName} ${lastName}`; // Combine first and last names
-  // Collecting the required fields
-  const officeEmail = document.getElementById('officeEmail').value.trim(); // Ensure this field is collected
-  const enterPassword = document.getElementById('password').value.trim(); // Ensure this field is collected
-  if (!officeEmail || !enterPassword) {
-    console.error("Office Email and Password are required.");
-    return; // Stop if required fields are not present
-}
-   
-    // Create employee details object
     const employeeDetails = {
-        fullName: fullName,
-        officeEmail: officeEmail,
-        enterPassword: enterPassword, // Send full name to the server
-        dateOfJoining: document.getElementById('dateOfJoining').value,
-        employmentType: document.getElementById('workType').value,
-        probationPeriod: document.getElementById('probationPeriod').value,
-        confirmationDate: document.getElementById('confirmationDate').value,
-        department: document.getElementById('department').value,
-        designation: document.getElementById('designation').value,
-        reportingTo: document.getElementById('reportsTo').value,
-        workLocation: document.getElementById('workLocation').value,
-        // officeEmail: document.getElementById('officeEmail').value='',
-        // enterPassword:document.getElementById('password').value='',
-        role: document.getElementById('roleName').value,
-        salary: document.getElementById('annual_ctc').value,
-        grade: document.getElementById('grade').value,
-        mobile: document.getElementById('mobileNo').value,
-        personalEmail: document.getElementById('personal_Email').value,
-        currentAddress: document.getElementById('currentAddress').value,
-        permanentAddress: document.getElementById('permanentAddress').value,
-        status: document.getElementById('status').value,
-        aadhaarNumber: document.getElementById('aadhaarNumber').value,
-        panNumber: document.getElementById('panNumber').value,
-        pfNumber: document.getElementById('pfNumber').value,
-        uanNumber: document.getElementById('uanNumber').value,
-        bankAccountNumber: document.getElementById('bankAccountNumber').value,
-        companyName: document.getElementById('company').value,
-        employeeNumber: document.getElementById('employeeNumber').value,
-        active: true // Set active status to true
+        employeeNumber: document.getElementById('employeeNumber')?.value || '',
+        fullName: `${document.getElementById('firstName')?.value || ''} ${document.getElementById('lastName')?.value || ''}`,
+        dateOfJoining: document.getElementById('dateOfJoining')?.value || '',
+        employmentType: document.getElementById('workType')?.value || '',
+        probationPeriod: document.getElementById('probationPeriod')?.value || '',
+        confirmationDate: document.getElementById('confirmationDate')?.value || '',
+        department: document.getElementById('department')?.value || '',
+        designation: document.getElementById('designation')?.value || '',
+        reportingTo: document.getElementById('reportsTo')?.value || '',
+        workLocation: document.getElementById('workLocation')?.value || '',
+        role: document.getElementById('roleName')?.value || '',
+        companyName: document.getElementById('company')?.value || '',
+        officeEmail: document.getElementById('officeEmail')?.value || '',
+        enterPassword: document.getElementById('password')?.value || '',
+        salaryCTC: document.getElementById('annual_ctc')?.value || '',
+        grade: document.getElementById('grade')?.value || '',
+        personalEmail: document.getElementById('personal_Email')?.value || '',
+        mobile: document.getElementById('mobileNo')?.value || '',
+        currentAddress: document.getElementById('currentAddress')?.value || '',
+        permanentAddress: document.getElementById('permanentAddress')?.value || '',
+        maritalStatus: document.getElementById('status')?.value || '',
+        aadhaarNumber: document.getElementById('aadhaarNumber')?.value || '',
+        panNumber: document.getElementById('panNumber')?.value || '',
+        pfNumber: document.getElementById('pfNumber')?.value || '',
+        uanNumber: document.getElementById('uanNumber')?.value || '',
+        bankAccountNumber: document.getElementById('bankAccountNumber')?.value || '',
+        bankName: document.getElementById('bankName')?.value || '',
+        active: true
     };
-    document.getElementById('officeEmail').value = '';
-    document.getElementById('password').value = '';
 
-   
+    const photoInput = document.getElementById('photo');
+    const photoFile = photoInput?.files[0] || null;
 
-    console.log('Employee Details:', employeeDetails);
-    
-    // Send POST request to your server
     fetch('http://172.16.2.6:4000/api/users', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}` 
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(employeeDetails),
-      
     })
     .then(response => {
-        console.log('Response Status:', response.status); // Log the status code
-        return response.json().then(data => ({ status: response.status, body: data }));
-    })
-    .then(({ status, body }) => {
-        if (status === 200) {
-            console.log('Success:', body);
-            alert('Employee details submitted successfully!');
-            // Optionally, reset the form or redirect the user here
-            // document.getElementById('employeeForm').reset(); // Uncomment to reset the form
-        } else {
-            console.error('Error in submission:', body);
-            alert('Failed to submit employee details. Please check the details and try again.');
+        if (!response.ok) {
+            if (response.status === 401) {
+                throw new Error('Unauthorized: Your session may have expired or you lack necessary permissions.');
+            }
+            return response.text().then(text => { throw new Error(text); });
         }
+        return response.json();
+    })
+    .then(data => {
+        const userId = data._id;
+
+        if (photoFile) {
+            const photoFormData = new FormData();
+            photoFormData.append('photo', photoFile);
+
+            return fetch(`http://172.16.2.6:4000/upload/photo/${userId}`, {
+                method: 'POST',
+                body: photoFormData,
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+        }
+        return Promise.resolve({ ok: true, json: () => ({ message: 'No photo uploaded' }) });
+    })
+    .then(photoResponse => {
+        if (!photoResponse.ok) {
+            return photoResponse.text().then(text => { throw new Error(`Photo upload failed: ${text}`); });
+        }
+        return photoResponse.json();
+    })
+    .then(photoData => {
+        alert('Employee details submitted successfully!');
+        nextStep();
     })
     .catch(error => {
-        console.error('Fetch error:', error);
-        alert('An error occurred while submitting employee details. Please try again.');
-    });
-}
-
-// Wait for the DOM content to load
-document.addEventListener('DOMContentLoaded', () => {
-    // Attach event listener to form submit
-    document.body.addEventListener('submit', (event) => {
-        if (event.target && event.target.id === 'employeeForm') {
-            postEmployeeDetails(event);
+        alert('Error: ' + error.message);
+        if (error.message.includes('Unauthorized')) {
+            window.location.href = '/login';
         }
     });
-});
-// Get all sidebar links
-const links = document.querySelectorAll('.sidebar a');
-
-// Function to remove 'active' class from all links
-function removeActiveClasses() {
-  links.forEach(link => link.classList.remove('active'));
 }
 
-// Function to set active link based on current URL
-function setActiveLink() {
-  links.forEach(link => {
-    // Compare the link's href with the current URL
-    if (link.href === window.location.href) {
-      link.classList.add('active');
-    }
-  });
+function nextStep() {
+    console.log('Proceeding to the next step...');
 }
 
-// Add click event listener to all links
-links.forEach(link => {
-  link.addEventListener('click', function(event) {
+function editEmployeeDetails(event) {
     event.preventDefault();
-    // Remove 'active' class from all links
-    removeActiveClasses();
+    const inputs = document.querySelectorAll('#employeeForm input, #employeeForm select');
+    inputs.forEach(input => input.removeAttribute('readonly'));
 
-    // Add 'active' class to the clicked link
-    this.classList.add('active');
+    const editButton = document.getElementById('editButton');
+    if (editButton) {
+        editButton.style.display = 'none';
+    }
+}
 
-    // Navigate to the clicked link's URL
-    window.location.href = this.href;
-  });
-});
-
-// On page load, set the active link based on the current URL
-window.addEventListener('load', setActiveLink);
+document.getElementById('submitButton')?.addEventListener('click', postEmployeeDetails);
+document.getElementById('editButton')?.addEventListener('click', editEmployeeDetails);
+document.getElementById('employeeForm')?.addEventListener('submit', postEmployeeDetails);
