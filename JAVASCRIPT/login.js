@@ -4,7 +4,7 @@ async function loginUser(event) {
     const emailInput = document.getElementById('email').value.trim();
     const passwordInput = document.getElementById('password').value.trim();
     const resultElement = document.getElementById('result'); 
-
+    resultElement.innerText = '';
     // Validate input fields
     if (!emailInput || !passwordInput) {
         resultElement.innerText = 'Email and password are required.';
@@ -15,6 +15,7 @@ async function loginUser(event) {
     resultElement.innerText = 'Logging in...';
 
     try {
+        console.log('Attempting to log in with:', { email: emailInput, password: passwordInput });
         const response = await fetch('http://172.16.2.6:4000/api/login', {
             method: 'POST',
             headers: {
@@ -27,8 +28,8 @@ async function loginUser(event) {
             const result = await response.json();
             console.log('API Response:', result);
            
-              // Check if user and roleName are defined
-              if (!result.user || !result.user.roleName) {
+            // Check if user and roleName are defined
+            if (!result.user || !result.user.roleName) {
                 console.error('Login response does not contain user or role');
                 resultElement.innerText = 'Login failed: invalid response format.';
                 return;
@@ -42,12 +43,6 @@ async function loginUser(event) {
             }
 
             // Successful login
-            // resultElement.innerText = 'Login successful';
-        //     const result = await response.json();
-        // console.log('API Response:', result);
-        // console.log('Raw response:', await response.text());
-
-        
             const token = result.token; // Get the token from the user object
             if (!token) {
                 console.error('Token is undefined in the response');
@@ -56,12 +51,15 @@ async function loginUser(event) {
             }
             console.log('Login successful, token:', token);
     
-            // Store the token in local storage
-            localStorage.setItem('authToken', token);
-            localStorage.setItem('loggedInUser', JSON.stringify(result.user));
-            sessionStorage.setItem('userId', result.user._id);  // Corrected field
-            sessionStorage.setItem('fullName', result.user.fullName);  // Corrected field
+            // Decode the token to get the expiration time
+            const payload = JSON.parse(atob(token.split('.')[1])); // Decode the JWT payload
+            const expirationTime = payload.exp * 1000; // Convert to milliseconds
 
+            // Set the cookie with expiration
+            document.cookie = `authToken=${token}; path=/; expires=${new Date(expirationTime).toUTCString()}; SameSite=None; Secure`;
+            localStorage.setItem('loggedInUser', JSON.stringify(result.user));
+            sessionStorage.setItem('userId', result.user._id);
+            sessionStorage.setItem('fullName', result.user.fullName);
 
             const userRole = result.user.roleName;
             switch (userRole) {
@@ -74,25 +72,29 @@ async function loginUser(event) {
                 case 'manager':
                     window.location.replace('/HTML/manager.html');
                     break;
-                    case 'superadmin':
-                        window.location.replace('/HTML/superadmin.html');
-                        break;
+                case 'superadmin':
+                    window.location.replace('/HTML/superadmin.html');
+                    break;
                 default:
                     resultElement.innerText = 'Invalid role';
-                }
+            }
+        }else {
+            if (response.status === 401) {
+                resultElement.innerText = 'Incorrect email or password. Please try again.';
             } else {
-                const errorText = await response.text(); // Read response as plain text
-                resultElement.innerText = 'Invalid email or password';
+                const errorText = await response.text();
+                resultElement.innerText = 'Login failed. Please try again later.';
                 console.error('Login failed:', errorText);
             }
-        } catch (error) {
-            console.error('Error during login:', error);
-            resultElement.innerText = 'An error occurred during login. Please try again later.';
-        } finally {
-            // Optionally hide the loading indicator
         }
+    } catch (error) {
+        console.error('Error during login:', error);
+        resultElement.innerText = 'An error occurred during login. Please try again later.';
+    } finally {
+        // Optionally hide the loading indicator
     }
-    
+}
+
 window.addEventListener('load', function () {
     // Add a new entry to the browser's history
     window.history.pushState(null, null, window.location.href);
@@ -103,4 +105,3 @@ window.addEventListener('load', function () {
         window.history.pushState(null, null, window.location.href);
     });
 });
-    

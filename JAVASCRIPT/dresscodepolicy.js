@@ -26,8 +26,8 @@ document.addEventListener("DOMContentLoaded", async function() {
             // Log the keys in fileDetails for better debugging
             console.log('File Details Keys:', Object.keys(fileDetails));
 
-            const originalName = fileDetails.originalName; // Access the original name from the response
-            const filePath = fileDetails.fileUrl; // Assuming this is the correct URL for the PDF file
+            const originalName = fileDetails.originalName || null; // Access the original name from the response
+            const filePath = fileDetails.fileUrl || null; // Assuming this is the correct URL for the PDF file
 
             // Log original name and file path
             console.log('Original Name:', originalName);
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             
             // Create a URL for the PDF blob
             const url = URL.createObjectURL(blob);
-            pdfViewer.src = 'http://172.16.2.6:4000/files'; // Set the iframe source to the PDF blob
+            pdfViewer.src = url; // Set the iframe source to the PDF blob
             downloadLink.href = `http://172.16.2.6:4000/download/${fileDetails.id}`; // Set the download link to the file URL
             downloadLink.download = originalName; // Set the download attribute with the original name
         } else {

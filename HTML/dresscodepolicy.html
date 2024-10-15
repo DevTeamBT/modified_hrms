@@ -8,6 +8,13 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../CSS/dresscodepolicy.css"> <!-- Ensure the path is correct -->
+    <style>
+        #loading-message {
+            display: none; /* Initially hide the loading message */
+            font-size: 1.2rem;
+            margin: 20px 0;
+        }
+    </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -85,27 +92,12 @@
                 </ul>
             </nav>
 
-            <h1>Policy Distribution: Bodhtree India Employees</h1>
-      <ul id="content">
-        <li onclick="showImage('../IMAGES/Page1.jpeg')">1. Introduction</li>
-        <li onclick="showImage('../IMAGES/Page1.jpeg')">2. Purpose</li>
-        <li onclick="showImage('../IMAGES/Page1.jpeg')">3. Scope</li>
-        <li>4.policy Guidelines</li>
-            <li class="policy" onclick="showImage('../IMAGES/Page1.jpeg')" >4a. General Guidelines</li>
-            <li class="policy" onclick="showImage('../IMAGES/Page2.jpeg')">4b. Business Formal Attire</li>
-            <li class="policy"onclick="showImage('../IMAGES/Page2.jpeg')">4c. Business Casual Attire</li>
-            <li class="policy" onclick="showImage('../IMAGES/Page2.jpeg')">4d. Casual Attire</li>
-            <li class="policy" onclick="showImage('../IMAGES/Page2.jpeg')">4e. Prohibited Attire</li>
-            <li class="policy" onclick="showImage('../IMAGES/Page2.jpeg')">4f. Special Consideration</li>
-            <li class="policy" onclick="showImage('../IMAGES/Page3.jpeg')">4g. Remote Work Attire</li></li>
-       
-        <li onclick="showImage('../IMAGES/Page3.jpeg')">6. Enforcement & Compliance</li>
-        <li onclick="showImage('../IMAGES/Page3.jpeg')">7. Policy Amendments & Updates</li>
-      </ul>
+           
+    <h1>Dress Code Policy</h1>
+    <div id="loading-message">Loading policy...</div>
+    <iframe id="pdf-viewer" src="" title="PDF Viewer"></iframe>
+    <a id="download-link" href="" download>Download Policy</a>
 
-      <div id="image-container">
-        <img id="policy-image" src="" alt="Policy Image" style="display:none;">
-      </div>
    
 <script src="../JAVASCRIPT/dresscodepolicy.js"></script> 
 </body>
