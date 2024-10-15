@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDF Upload for HR</title>
+  <link rel="stylesheet" href="policy.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Upload PDF for HR</h2>
+    <form id="uploadForm">
+      <input type="file" id="pdfFile" accept="application/pdf" required />
+      <button type="submit">Upload PDF</button>
+    </form>
+    
+    <div id="statusMessage"></div>
+
+    <h2>Fetch Uploaded PDF</h2>
+    <button id="fetchPdfButton">Fetch PDF</button>
+    <div id="pdfDisplay"></div>
+  </div>
+
+  <script src="policy.js"></script>
+</body>
+</html>

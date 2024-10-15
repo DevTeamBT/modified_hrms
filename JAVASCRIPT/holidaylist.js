@@ -36,3 +36,5 @@ document.addEventListener('DOMContentLoaded', () => {
     // Load holidays immediately when the page loads
     loadHolidays();
 });
+
+
