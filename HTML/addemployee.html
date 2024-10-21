@@ -116,11 +116,12 @@
       <div class="container-fluid">
         <div class="container">
           <div class="form">
-            <form id="employeeForm">
+            <form id="employeeForm" method="post">
               <div class="row mb-2">
                 <div class="col-sm-6">
                 <label for="employeeNumber">Employee Number <span class="mandatory">*</span></label>
                 <input type="text" id="employeeNumber" name="employeeNumber" class="form-control"  required>
+                <div id="validationMessage" class="text-danger" style="display:none;"></div>
             </div>
             <div class="col-sm-6">
                 <label for="photo">Profile Photo </label>
@@ -148,8 +149,8 @@
             </div>
             <div class="col-sm-6">
                 <label for="employmentType">Employment Type <span class="mandatory">*</span></label>
-                <select id="employmentType" name="employmentType" class="form-control" required>
-                  <option value="" disabled selected>Select</option>
+                <select id="workType" name="employmentType" class="form-select" class="form-control" required>
+                  <option value="" disabled selected>Select Employment Type</option>
                     <option value="full-time">Full-time</option>
                     <option value="part-time">Part-time</option>
                     <option value="contract">Contract</option>
@@ -163,8 +164,8 @@
         <div class="row mb-2">
           <div class="col-sm-6">
                 <label for="probationPeriod">Probation Period (days) <span class="mandatory">*</span></label>
-                <select id="probationPeriod" name="probationPeriod" class="form-control" required>
-                  <option value="" disabled selected>Select</option>
+                <select id="probationPeriod" name="probationPeriod" class="form-select" class="form-control" required>
+                  <option value="" disabled selected>Select probation Period</option>
                     <option value="30">30</option>
                     <option value="60">60</option>
                     <option value="90">90</option>
@@ -180,7 +181,7 @@
         <div class="row mb-2">
           <div class="col-sm-6">
                 <label for="department">Department <span class="mandatory">*</span></label>
-                <select id="department" name="department" class="form-control" required>
+                <select id="department" name="department"  class="form-select" class="form-control" required>
                   <option value="" disabled selected>Select Department</option>
                     <option value="Operations">Operations</option>
                     <option value="US Finance">US Finance</option>
@@ -196,7 +197,7 @@
             </div>
             <div class="col-sm-6">
               <label for="designation">Designation <span class="mandatory">*</span></label>
-              <select id="designation" name="designation" class="form-control" required>
+              <select id="designation" name="designation" class="form-select" class="form-control" required>
                   <option value="" disabled selected>Select Designation</option>
                   <option value="Whole time Director & CEO">Whole time Director & CEO</option>
                   <option value="Sr.Finance Executive">Sr. Finance Executive</option>
@@ -238,20 +239,19 @@
             <label for="reportingTo">Reporting To <span class="mandatory">*</span></label>
             <select id="reportingTo" name="reportingTo" class="form-select" class="form-control" required>
                 <option value="" disabled selected>Select Manager</option>
-                <option value="Prashanth">Prashanth</option>
-                <option value="Pruthvi">Pruthvi</option>
+                <option value="Prashanth">Prashanth Mitta</option>
+                <option value="Pruthvi">Prutvi Raj Akula</option>
                 <option value="Naga Sudha">Naga Sudha</option>
-                <option value="Nirvigna">Nirvigna</option>
-                <option value="Shishir">Shishir</option>
-                <option value="Swapna">Swapna</option>
-                <option value="Vara Prasad">Vara Prasad</option>
-                <option value="Afsana">Afsana</option>
+                <option value="Nirvigna">K Nirvigna</option>
+                <option value="Shishir">Shishir Kumar Singh</option>
+                <option value="Swapna">Swapna Tervati</option>
+                <option value="Vara Prasad">Vara Prasad Pattapusetti</option>
+                <option value="Afsana">Afsana Shaik</option>
             </select>
         </div>
-        
         <div class="col-sm-6">
           <label for="workLocation">Work Location <span class="mandatory">*</span></label>
-          <select id="workLocation" name="workLocation" class="form-control" required>
+          <select id="workLocation" name="workLocation" class="form-select" class="form-control" required>
               <option value="" disabled selected>Select Work Location</option>
               <option value="India">India</option>
               <option value="USA">USA</option>
@@ -263,7 +263,7 @@
         <div class="row mb-2">
           <div class="col-sm-6">
                 <label for="role">Role <span class="mandatory">*</span></label>
-                <select id="role" name="role" class="form-control" required>
+                <select id="role" name="role" class="form-select" class="form-control" required>
                   <option value="" disabled selected>Select Role</option>
                   <option value="Super-Admin">Super-Admin</option>
                     <option value="Admin">Admin</option>
@@ -273,7 +273,7 @@
             </div>
             <div class="col-sm-6">
                 <label for="company">Company <span class="mandatory">*</span></label>
-                <select id="company" name="company" class="form-control" required>
+                <select id="company" name="company" class="form-select" class="form-control" required>
                   <option value="" disabled selected>Select Company</option>
                     <option value="Bodhtree">Bodhtree</option>
                     <option value="OtherCompany">OtherCompany</option>
@@ -289,18 +289,20 @@
             <div class="col-sm-6">
                 <label for="password">Password <span class="mandatory">*</span></label>
                 <input type="password" id="password" name="password" class="form-control" required>
+                <span class="error-message" id="passwordError" style="color: red; display: none;"></span>
             </div>
         </div>
 
         <!-- Salary CTC, Grade -->
         <div class="row mb-2">
           <div class="col-sm-6">
-                <label for="salary">Salary CTC <span class="mandatory">*</span></label>
+                <label for="salary">Annual CTC <span class="mandatory">*</span></label>
                 <input type="text" id="salary" name="salary" class="form-control" required>
             </div>
             <div class="col-sm-6">
                 <label for="grade">Grade <span class="mandatory">*</span></label>
-                <select id="grade" name="grade" class="form-control" required>
+                <select id="grade" name="grade" class="form-select" class="form-control" required>
+                  <option value="" disabled selected>Select Grade</option>
                   <option value="A">A</option>
                   <option value="B">B</option>
                   <option value="C">C</option>
@@ -319,69 +321,75 @@
             </div>
             <div class="col-sm-6">
                 <label for="mobileNumber">Mobile Number <span class="mandatory">*</span></label>
-                <input type="tel" id="mobileNumber" name="mobileNumber" class="form-control" required>
+                <input type="tel" id="mobileNo" name="mobileNumber" class="form-control" required>
+                <span class="error-message" id="mobileNoError" style="color: red; display: none;"></span>
             </div>
         </div>
 
         <!-- Current Address, Permanent Address -->
         <div class="row mb-2">
           <div class="col-sm-6">
-                <label for="currentAddress">Current Address</label>
-                <input type="text" id="currentAddress" name="currentAddress" class="form-control" >
+                <label for="currentAddress">Current Address <span class="mandatory">*</span> </label>
+                <input type="text" id="currentAddress" name="currentAddress" class="form-control" required>
             </div>
             <div class="col-sm-6">
-                <label for="permanentAddress">Permanent Address </label>
-                <input type="text" id="permanentAddress" name="permanentAddress" class="form-control">
+                <label for="permanentAddress">Permanent Address <span class="mandatory">*</span> </label>
+                <input type="text" id="permanentAddress" name="permanentAddress" class="form-control" required>
             </div>
         </div>
 
         <!-- Marital Status, Aadhar Number -->
         <div class="row mb-2">
           <div class="col-sm-6">
-                <label for="maritalStatus">Marital Status</label>
-                <select id="maritalStatus" name="maritalStatus" class="form-control">
-                  <option value="" disabled selected>Select</option>
+                <label for="maritalStatus">Marital Status <span class="mandatory">*</span> </label>
+                <select id="maritalStatus" name="maritalStatus" class="form-select" class="form-control" required>
+                  <option value="" disabled selected>Select Marital Status</option>
                     <option value="Married">Married</option>
                     <option value="Unmarried">Unmarried</option>
                     <option value="Widow">Widow</option>
                 </select>
             </div>
             <div class="col-sm-6">
-                <label for="aadharNumber">Aadhar Number</label>
-                <input type="text" id="aadharNumber" name="aadharNumber" class="form-control">
+                <label for="aadharNumber">Aadhaar Number <span class="mandatory">*</span> </label>
+                <input type="text" id="aadharNumber" name="aadharNumber" class="form-control" required>
+                <span class="error-message" id="aadharError" style="color: red; display: none;"></span>
             </div>
         </div>
 
         <!-- PAN Number, PF Number -->
         <div class="row mb-2">
           <div class="col-sm-6">
-                <label for="panNumber">PAN Number</label>
-                <input type="text" id="panNumber" name="panNumber" class="form-control">
+                <label for="panNumber">PAN Number <span class="mandatory">*</span></label>
+                <input type="text" id="panNumber" name="panNumber" class="form-control" required>
+                <span class="error-message" id="panNumberError" style="color: red; display: none;"></span>
             </div>
             <div class="col-sm-6">
-                <label for="pfNumber">PF Number</label>
-                <input type="text" id="pfNumber" name="pfNumber" class="form-control" >
+                <label for="pfNumber">PF Number <span class="mandatory">*</span></label>
+                <input type="text" id="pfNumber" name="pfNumber" class="form-control" required>
+                <span class="error-message" id="pfNumberError" style="color: red; display: none;"></span>
             </div>
         </div>
 
         <!-- UAN Number, Bank Account Number -->
         <div class="row mb-2">
           <div class="col-sm-6">
-                <label for="uanNumber">UAN Number</label>
-                <input type="text" id="uanNumber" name="uanNumber" class="form-control">
+                <label for="uanNumber">UAN Number <span class="mandatory">*</span></label>
+                <input type="text" id="uanNumber" name="uanNumber" class="form-control" required>
+                <span class="error-message" id="uanNumberError" style="color: red; display: none;"></span>
             </div>
             <div class="col-sm-6">
-                <label for="bankAccountNumber">Bank Account Number</label>
-                <input type="text" id="bankAccountNumber" name="bankAccountNumber" class="form-control" >
+                <label for="bankAccountNumber">Bank Account Number <span class="mandatory">*</span></label>
+                <input type="text" id="bankAccountNumber" name="bankAccountNumber" class="form-control" required>
+                <span class="error-message" id="bankAccountNumberError" style="color: red; display: none;"></span>
             </div>
             </div>
             <div class="row mb-2">
             <div class="col-sm-6">
-                <label for="bankName">Bank Name </label>
-                <input type="text" id="bankName" name="bankName" class="form-control" >
+                <label for="bankName">Bank Name <span class="mandatory">*</span> </label>
+                <input type="text" id="bankName" name="bankName" class="form-control" required>
             </div>
             <div class="col-sm-6">
-              <div class="form-group row allow-employee">
+              <!-- <div class="form-group row allow-employee">
                 <label for="allowEmployeeFill">Allow Employee to Fill <span class="mandatory">*</span></label>
             </div>
             <div class="dropdown" id="fieldDropdown">
@@ -392,34 +400,25 @@
                           <li class="dropdown-item">
                                 <input type="checkbox" value="profilePhoto" class="form-check-input"> Profile Photo
                             </li>
-                            <li class="dropdown-item">
-                                <input type="checkbox" value="currentAddress" class="form-check-input"> Current Address
-                            </li>
-                            <li class="dropdown-item">
-                                <input type="checkbox" value="permanentAddress" class="form-check-input"> Permanent Address
-                            </li>
-                            <li class="dropdown-item">
-                                <input type="checkbox" value="maritalStatus" class="form-check-input"> Marital Status
-                            </li>
-                            <li class="dropdown-item">
-                                <input type="checkbox" value="aadharNumber" class="form-check-input"> Aadhar Number
-                            </li>
-                            <li class="dropdown-item">
-                                <input type="checkbox" value="panNumber" class="form-check-input"> PAN Number
-                            </li>
-                            <li class="dropdown-item">
-                                <input type="checkbox" value="pfNumber" class="form-check-input"> PF Number
-                            </li>
-                            <li class="dropdown-item">
-                                <input type="checkbox" value="uanNumber" class="form-check-input"> UAN Number
-                            </li>
-                            <li class="dropdown-item">
-                                <input type="checkbox" value="bankAccountNumber" class="form-check-input"> Bank Account Number
-                            </li>
-                            <li class="dropdown-item">
-                                <input type="checkbox" value="bankName" class="form-check-input"> Bank Name
-                            </li>
                         </ul>
+                    </div> -->
+                    <!-- Allow Employees to Fill Checkbox -->
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input" id="allowEmployeesToFill">
+                      <label class="form-check-label" for="allowEmployeesToFill">Allow Employees to Fill</label>
+                    </div>
+
+                    <!-- Dropdown for Choosing Fields -->
+                    <div class="dropdown" id="fieldDropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                          Choose Fields
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="fieldCheckboxes">
+                          <li class="dropdown-item">
+                              <input type="checkbox" value="profilePhoto" class="form-check-input"> Profile Photo
+                          </li>
+                          <!-- Add more fields as needed -->
+                      </ul>
                     </div>
                     </div>
                     </div>
