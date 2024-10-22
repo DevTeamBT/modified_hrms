@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function fetchEmployeeData() {
-    // Fetch user ID from a reliable source, e.g., the logged-in user's profile
     const userId = getUserId(); // Implement this function to get the actual user ID
 
     if (!userId) {
@@ -11,13 +10,12 @@ function fetchEmployeeData() {
         return;
     }
 
-    // Use the userId variable to build the API URL
     const apiUrl = `http://172.16.2.6:4000/api/users/${userId}`; // Ensure this URL is correct
     console.log('Fetching employee data for user ID:', userId);
+    
     fetch(apiUrl)
         .then(response => {
             if (!response.ok) {
-                // Log the response status for debugging
                 console.error('Response status:', response.status);
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -29,7 +27,7 @@ function fetchEmployeeData() {
         })
         .then(data => {
             if (data && typeof data === 'object') {
-                displayEmployeeData([data]); // Wrap data in an array for consistent handling
+                displayEmployeeData([data]);
             } else {
                 throw new Error('Unexpected data structure received.');
             }
@@ -41,8 +39,7 @@ function fetchEmployeeData() {
 }
 
 function getUserId() {
-    // Implement this function to retrieve the user ID from the session, a cookie, or another method
-    return sessionStorage.getItem('userId'); // Replace with logic to obtain the actual user ID
+    return sessionStorage.getItem('userId'); // Replace with your logic to obtain the actual user ID
 }
 
 function displayEmployeeData(employees) {
@@ -51,6 +48,16 @@ function displayEmployeeData(employees) {
 
     employees.forEach(employee => {
         const row = document.createElement('tr');
+        
+        // Adding leave balance information if available
+        const leaveBalance = employee.leaveBalance ? `
+            Annual Leave: ${employee.leaveBalance.annualLeave}<br>
+            Casual Leave: ${employee.leaveBalance.casualLeave}<br>
+            Maternity Leave: ${employee.leaveBalance.maternityLeave}<br>
+            Paternity Leave: ${employee.leaveBalance.paternityLeave}<br>
+            Sick Leave: ${employee.leaveBalance.sickLeave}
+        ` : 'N/A';
+
         row.innerHTML = `
             <td>${employee.employeeNumber || '-'}</td>
             <td>${employee.fullName || '-'}</td>
@@ -70,8 +77,9 @@ function displayEmployeeData(employees) {
             <td>${employee.active ? 'Yes' : 'No'}</td>
             <td>${employee.roleName || '-'}</td>
             <td>${employee.shiftTiming || '-'}</td>
-            <td>${employee.leaveBalance || '-'}</td>
+            <td>${leaveBalance}</td> <!-- Displaying the leave balance -->
         `;
+        
         tableBody.appendChild(row);
     });
 }
