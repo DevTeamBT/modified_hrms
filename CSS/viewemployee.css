@@ -215,23 +215,16 @@ tr:nth-child(even) td {
     }
 }
 
-/* Set the table to occupy the full width
-#employeeTable {
-    width: 100%;
-    border-collapse: collapse;
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 280px;
+    width: calc(100% - 280px);
+    background-color: #fff;
+    height: 60 px; /* Fixed height */
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: left 0.3s ease, width 0.3s ease;
+    z-index: 1000;
 }
-
-/* Style the table cells */
-/* #employeeTable td {
-    padding: 8px;
-    border: 1px solid #ddd;
-    /* Enable vertical alignment */
-    /* vertical-align: top; 
-}  */
-
-/* Make cells with potentially long content scrollable */
-/* .scrollable-cell {
-    max-height: 50px; /* Adjust height as needed */
-    /* overflow-y: auto; /* Enable vertical scrolling */
-    /* display: block; /* Allows scrolling */
-/* }  */

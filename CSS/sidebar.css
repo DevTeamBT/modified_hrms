@@ -1,0 +1,151 @@
+/* styles.css */
+
+/* Fixed Sidebar */
+.sidebar {
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
+    transition: transform 0.3s ease;
+  }
+  
+  /* Sidebar hidden */
+  .sidebar-hidden {
+    transform: translateX(-100%);
+  }
+  
+  /* Sidebar hover effect */
+  .sidebar a {
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Animation for hover */
+    font-size: 1.125rem; /* Increased font size */
+  }
+  
+  .sidebar a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #f0f0f0;
+    transform: scale(1.05); /* Slight scale effect */
+  }
+  
+  /* Icon colors */
+  .icon-home { color: #4A5568; } /* Default icon color */
+  .icon-my-details { color: #68D391; } /* Green */
+  .icon-time-sheet { color: #F6E05E; } /* Yellow */
+  .icon-resources { color: #4299E1; } /* Blue */
+  .icon-forums { color: #FBD38D; } /* Light yellow */
+  .icon-organizations { color: #ED64A6; } /* Pink */
+  
+  /* Logout button styles */
+  #logout-button {
+    background-color: #e3342f; /* Red background */
+    color: white; /* White text */
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem; /* Rounded corners */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transition */
+  }
+  
+  #logout-button:hover {
+    background-color: #c53030; /* Darker red on hover */
+    transform: scale(1.1) rotate(-5deg); /* Bouncing effect */
+  }
+  
+  /* Dropdown styles */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    min-width: 160px;
+    border-radius: 0.375rem; /* Rounded corners */
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+    animation: fadeIn 0.3s ease; /* Fade-in animation */
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .dropdown-content a {
+    color: black; /* Text color */
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 0.9rem; /* Reduced font size */
+    transition: background-color 0.2s; /* Smooth background color transition */
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #f1f1f1; /* Background color on hover */
+  }
+  
+  /* Notification icon styles */
+  #notification-icon {
+    position: relative;
+    font-size: 1.5rem; /* Increased size for visibility */
+    color: gray; /* Color of the notification icon */
+    transition: transform 0.2s; /* Add transition for icon */
+  }
+  
+  #notification-icon:hover {
+    transform: scale(1.1); /* Scale effect on hover */
+  }
+  
+  .notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 0.1rem 0.3rem;
+    font-size: 0.75rem;
+  }
+  
+  /* Search input styles */
+  #search-input {
+    width: 300px; /* Increased width for the search input */
+    transition: width 0.4s ease-in-out; /* Smooth transition for width */
+  }
+  
+  #search-input:focus {
+    width: 400px; /* Expand width on focus */
+  }
+  
+  /* Profile icon styles */
+  #profile-icon {
+    font-size: 1.5rem; /* Increase icon size */
+    color: gray; /* Color of the profile icon */
+    padding-left: 10px; /* Space between search bar and profile icon */
+    transition: transform 0.2s; /* Add transition for icon */
+  }
+  
+  #profile-icon:hover {
+    transform: scale(1.1); /* Scale effect on hover */
+  }
+  
+  /* Centering the title */
+  .title {
+    text-align: center; /* Center text */
+    font-size: 2rem; /* Title font size */
+    font-weight: bold; /* Title font weight */
+  }
+  
+  /* Space below logo */
+  .logo-space {
+    margin-bottom: 2rem; /* Increased space below logo */
+  }
+  
+  /* Input field styles */
+  .input-field {
+    width: 100%; /* Full width of the column */
+  }
+  
