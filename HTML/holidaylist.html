@@ -37,45 +37,29 @@
         <!-- Main Content -->
         <div class="flex-1 p-10">
             <div id="navbar-placeholder"></div>
-            <div class="container mx-auto">
-                <h1 class="text-5xl font-extrabold text-gray-800 text-center mb-10">Holiday List</h1>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Card for India -->
-                    <div class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105 duration-300">
-                        <h3 class="text-3xl font-semibold text-center">India</h3>
-                        <p class="text-gray-200 mt-2 text-center">Explore vibrant festivals and cultural holidays celebrated in India.</p>
-                        <div class="mt-4 text-center">
-                            <a href="india.html" target="_blank" class="bg-white text-blue-600 py-2 px-4 rounded-md font-semibold shadow hover:bg-gray-100 transition duration-300">
-                                View <i class="fas fa-arrow-circle-right"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Card for USA -->
-                    <div class="bg-gradient-to-r from-green-500 to-teal-600 text-white p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105 duration-300">
-                        <h3 class="text-3xl font-semibold text-center">USA</h3>
-                        <p class="text-gray-200 mt-2 text-center">Discover unique holidays celebrated across the United States.</p>
-                        <div class="mt-4 text-center">
-                            <a href="usa.html" target="_blank" class="bg-white text-green-600 py-2 px-4 rounded-md font-semibold shadow hover:bg-gray-100 transition duration-300">
-                                View <i class="fas fa-arrow-circle-right"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Card for Singapore -->
-                    <div class="bg-gradient-to-r from-red-500 to-orange-600 text-white p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105 duration-300">
-                        <h3 class="text-3xl font-semibold text-center">Singapore</h3>
-                        <p class="text-gray-200 mt-2 text-center">Experience the rich cultural diversity and celebrations in Singapore.</p>
-                        <div class="mt-4 text-center">
-                            <a href="singapore.html" target="_blank" class="bg-white text-red-600 py-2 px-4 rounded-md font-semibold shadow hover:bg-gray-100 transition duration-300">
-                                View <i class="fas fa-arrow-circle-right"></i>
-                            </a>
-                        </div>
-                    </div>
+            <div class="flex-1 p-8 bg-gray-100">
+                <div class="text-center mb-8">
+                  <h1 class="text-4xl font-bold text-gray-800 mb-4">Holiday List</h1>
                 </div>
-            </div>
-        </div>
-    </div>
+          
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
+                <!-- Country Link: India -->
+<a href="indian.html" class="block w-full text-center py-6 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 hover:shadow-xl transition-transform transform hover:scale-105">
+    <h2 class="text-xl font-semibold">India</h2>
+</a>
+
+<!-- Country Link: USA -->
+<a href="usa.html" class="block w-full text-center py-6 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 hover:shadow-xl transition-transform transform hover:scale-105">
+    <h2 class="text-xl font-semibold">USA</h2>
+</a>
+
+<!-- Country Link: Singapore -->
+<a href="singapore.html" class="block w-full text-center py-6 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-600 hover:shadow-xl transition-transform transform hover:scale-105">
+    <h2 class="text-xl font-semibold">Singapore</h2>
+</a>
+
+                </div>
+              </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

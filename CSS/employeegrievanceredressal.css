@@ -723,6 +723,19 @@ body {
   }
 
   .grievance {
-    padding: 40px;
+    margin-top: 10px;
+    padding:0 40px;
+    
+    width: fit-content;
   }
   
+
+
+  /* Highlight class for the clicked item */
+.highlight {
+    background-color: #007bff; /* Blue background */
+    color: white; /* White text color */
+    border-radius: 5px;
+    padding: 5px;
+    width: fit-content;
+}
