@@ -4,453 +4,302 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Resources</title>
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Resource</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<!-- </head>
- 
-<body class="bg-gray-100 text-gray-900"> -->
-  <style>
-    /* Sidebar styles */
-    .sidebar {
-      position: fixed;
-      height: 100%;
-      overflow-y: auto;
-      transition: transform 0.3s ease;
-    }
- 
-    .sidebar-hidden {
-      transform: translateX(-100%);
-    }
- 
-    /* Sidebar hover effect */
-    .sidebar a {
-      transition: background-color 0.3s ease, transform 0.2s ease;
-      font-size: 1.125rem;
-    }
- 
-    .sidebar a:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-      color: #f0f0f0;
-      transform: scale(1.05);
-    }
- 
-    /* Sidebar icon tooltip */
-    .sidebar-tooltip {
-      position: absolute;
-      left: 100%;
-      margin-left: 0.5rem;
-      padding: 0.5rem;
-      background-color: rgba(0, 0, 0, 0.75);
-      color: white;
-      border-radius: 0.375rem;
-      font-size: 0.875rem;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
-      white-space: nowrap;
-    }
- 
-    .sidebar-icon:hover .sidebar-tooltip {
-      opacity: 1;
-      visibility: visible;
-    }
- 
-    /* Logout button styles */
-    #logout-button {
-      background-color: #e3342f;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 0.375rem;
-      transition: background-color 0.3s, transform 0.2s;
-    }
- 
-    #logout-button:hover {
-      background-color: #c53030;
-      transform: scale(1.1) rotate(-5deg);
-    }
- 
-    /* Country card styles */
-    .country-link {
-      height: 200px; /* Reduced height */
-      width: 100%;
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border-radius: 0.75rem;
-      position: relative;
-      overflow: hidden;
-    }
- 
-    .country-link h2 {
-      font-size: 1.5rem; /* Adjusted font size */
-      color: white;
-      z-index: 2;
-    }
- 
-    /* Add gradient to flags */
-    .country-link::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6));
-      z-index: 1;
-      border-radius: 0.75rem;
-    }
- 
-    /* Hover effect: scale and shadow */
-    .country-link:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    }
- 
-    /* Specific country backgrounds with gradient */
-    .country-link:nth-child(1) {
-      background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('../IMAGES/download.png');
-    }
- 
-    .country-link:nth-child(2) {
-      background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('../IMAGES/download (1).png');
-    }
- 
-    .country-link:nth-child(3) {
-      background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('../IMAGES/download (2).png');
-    }
- 
-    /* Responsive card grid */
-    @media (min-width: 768px) {
-      .country-link {
-        height: 250px; /* Adjusted height for medium screens */
-      }
-    }
- 
-    @media (min-width: 1024px) {
-      .country-link {
-        height: 300px; /* Adjusted height for large screens */
-      }
-    }
- 
-    /* Notification icon styles */
-    #notification-icon {
-      position: relative;
-      font-size: 1.5rem;
-      color: gray;
-      transition: transform 0.2s;
-    }
- 
-    #notification-icon:hover {
-      transform: scale(1.1);
-    }
- 
-    .notification-badge {
-      position: absolute;
-      top: -5px;
-      right: -5px;
-      background-color: red;
-      color: white;
-      border-radius: 50%;
-      padding: 0.1rem 0.3rem;
-      font-size: 0.75rem;
-    }
- 
-    .pulse-animation {
-      animation: pulse 2s infinite;
-    }
- 
-    @keyframes pulse {
-      0%, 100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.2);
-      }
-    }
- 
-    /* Dropdown styles */
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      right: 0;
-      background-color: white;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-      z-index: 1;
-      min-width: 160px;
-      border-radius: 0.375rem;
-    }
- 
-    .dropdown:hover .dropdown-content {
-      display: block;
-      animation: fadeIn 0.3s ease;
-    }
- 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
- 
-    .dropdown-content a {
-      color: black;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-      font-size: 0.9rem;
-      transition: background-color 0.2s;
-    }
- 
-    .dropdown-content a:hover {
-      background-color: #f1f1f1;
-    }
- 
-    /* Profile icon styles */
-    #profile-icon {
-      font-size: 1.5rem;
-      color: gray;
-      padding-left: 10px;
-      transition: transform 0.2s;
-    }
- 
-    #profile-icon:hover {
-      transform: scale(1.1);
-    }
-  </style>
+  <link rel="stylesheet" href="../CSS/policies.css">
 </head>
-<body class="min-h-screen bg-gray-100 text-gray-900 transition-colors duration-300">
- 
-<div class="flex min-h-screen">
-  <!-- Sidebar -->
-  <aside id="sidebar" class="sidebar w-72 bg-gray-900 text-gray-100 py-6 px-4">
-    <div class="text-center mb-6 logo-space">
-      <img class="mx-auto w-20 h-20" src="../IMAGES/bodhtree-logo.png" alt="Logo" />
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <div class="sidebar">
+      <div class="user-panel mt-3 pb-3">
+        <div class="image">
+          <img class="image" src="../IMAGES/bodhtree-logo.png" />
+        </div>
+      </div>
+      <div class="form-inline search-container">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item menu-open">
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="./home.html" class="nav-link">
+                  <i class="nav-icon fas fa-home"></i>
+                  <p>Home</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>My Details</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>Time Sheet</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="resource.html" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>Resources</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>Forums</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-table"></i>
+              <p>Organisations</p>
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
-   
-    <!-- Search Bar -->
-    <div class="relative mb-4">
-      <input id="search-input" class="bg-gray-800 text-gray-300 pl-10" type="search" placeholder="Search" aria-label="Search">
-      <button id="search-button" class="text-gray-300 absolute right-3 top-1/2 transform -translate-y-1/2">
-        <i class="fas fa-search"></i>
-      </button>
-    </div>
- 
-    <nav>
-      <ul>
-        <li class="mb-4 relative">
-          <a href="./home.html" class="flex items-center space-x-3 hover:bg-gray-800 py-2 px-4 rounded-md">
-            <i class="fas fa-home text-blue-400"></i>
-            <span class="sidebar-icon">Home</span>
-            <span class="sidebar-tooltip">Home</span>
-          </a>
-        </li>
-        <li class="mb-4 relative">
-          <a href="#" class="flex items-center space-x-3 hover:bg-gray-800 py-2 px-4 rounded-md">
-            <i class="fas fa-th text-green-400"></i>
-            <span class="sidebar-icon">My Details</span>
-            <span class="sidebar-tooltip">My Details</span>
-          </a>
-        </li>
-        <li class="mb-4 relative">
-          <a href="#" class="flex items-center space-x-3 hover:bg-gray-800 py-2 px-4 rounded-md">
-            <i class="fas fa-clock text-purple-400"></i>
-            <span class="sidebar-icon">Time Sheet</span>
-            <span class="sidebar-tooltip">Time Sheet</span>
-          </a>
-        </li>
-        <li class="mb-4 relative">
-          <a href="#" class="flex items-center space-x-3 hover:bg-gray-800 py-2 px-4 rounded-md">
-            <i class="fas fa-chart-pie text-red-400"></i>
-            <span class="sidebar-icon">Resources</span>
-            <span class="sidebar-tooltip">Resources</span>
-          </a>
-        </li>
-        <li class="mb-4 relative">
-          <a href="#" class="flex items-center space-x-3 hover:bg-gray-800 py-2 px-4 rounded-md">
-            <i class="fas fa-comments text-yellow-400"></i>
-            <span class="sidebar-icon">Forums</span>
-            <span class="sidebar-tooltip">Forums</span>
-          </a>
-        </li>
-        <li class="mb-4 relative">
-          <a href="#" class="flex items-center space-x-3 hover:bg-gray-800 py-2 px-4 rounded-md">
-            <i class="fas fa-building text-orange-400"></i>
-            <span class="sidebar-icon">Organizations</span>
-            <span class="sidebar-tooltip">Organizations</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
   </aside>
- 
-  <!-- Main Content -->
-  <div class="flex-1 ml-72 transition-all duration-300" id="main-content">
-    <!-- Navbar -->
-    <nav class="bg-white shadow-md px-4 py-3 flex justify-between items-center">
-      <div class="flex items-center space-x-4">
-        <button id="toggle-button" class="text-gray-900 hover:text-blue-500" aria-label="Toggle sidebar" aria-expanded="false">
-          <i class="fas fa-bars"></i>
-        </button>
-        <input id="search-input-main" class="bg-gray-100 text-gray-900 pl-10" type="search" placeholder="Search" aria-label="Search">
-        <button id="search-button-main" class="text-gray-900" aria-label="Search">
-          <i class="fas fa-search"></i>
-        </button>
+  
+  <div class="content-wrapper">
+    <div class="content">
+      <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+          </li>
+        </ul>
+       </ul>
+      </nav>  
+
+      <!-- Row containing all four boxes -->
+      <div class="container-fluid">
+        <div class="row">
+          <!-- Box 1: Dress Code Policy -->
+          <div class="col-lg-3 col-6">
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>01</h3>
+                <p>Dress Code Policy</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-user-plus"></i>
+              </div>
+              <a href="./dresscodepolicy.html" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- Box 2: Work From Home Policy -->
+          <div class="col-lg-3 col-6">
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>02</h3>
+                <p>Work From Home Policy</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-id-card"></i>
+              </div>
+              <a href="./workfromhome.html" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+
+              <!-- Box 3: Dress Code Policy -->
+              <div class="col-lg-3 col-6">
+                <div class="small-box bg-danger">
+                  <div class="inner">
+                    <h3>03</h3>
+                    <p>Leave Policy</p>
+                  </div>
+                  <div class="icon">
+                    <i class="fas fa-user-plus"></i>
+                  </div>
+                  <a href="./leavepolicy.html" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+          </div>
+
+          
+              <!-- Box 3: Dress Code Policy -->
+              <div class="col-lg-3 col-6">
+                <div class="small-box bg-dark">
+                  <div class="inner">
+                    <h3>04</h3>
+                    <p>Code Of Conduct</p>
+                  </div>
+                  <div class="icon">
+                    <i class="fas fa-user-plus"></i>
+                  </div>
+                  <a href="./codeofconduct.html" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+          </div>
+
+
+           <!-- Box 3: Dress Code Policy -->
+           <div class="col-lg-3 col-6">
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>05</h3>
+                <p>Health & Safety Policies</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-user-plus"></i>
+              </div>
+              <a href="./health&safetypolicies.html" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
       </div>
-      <div class="flex items-center space-x-4 ml-auto">
-        <div class="dropdown">
-          <div id="notification-icon" class="relative cursor-pointer pulse-animation" title="Notifications">
-            <i class="fas fa-bell"></i>
-            <span class="notification-badge">3</span>
-          </div>
-          <div class="dropdown-content">
-            <a href="#">Notification 1</a>
-            <a href="#">Notification 2</a>
-            <a href="#">Notification 3</a>
-          </div>
-        </div>
-        <div class="dropdown">
-          <div id="profile-icon" class="cursor-pointer" title="Profile">
-            <i class="fas fa-user-circle"></i>
-          </div>
-          <div class="dropdown-content">
-            <a href="#">Profile</a>
-            <a href="#">Settings</a>
-            <a href="#">About</a>
-            <a href="#" id="logout-button">Sign Out</a>
-          </div>
-        </div>
-        <button id="dark-mode-toggle" class="text-gray-900 hover:text-blue-500" aria-label="Toggle dark mode">
-          <i class="fas fa-moon"></i>
-        </button>
+
+
+      
+           <!-- Box 3: Dress Code Policy -->
+           <div class="col-lg-3 col-6">
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>06</h3>
+                <p>Performance Management </p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-user-plus"></i>
+              </div>
+              <a href="./PerformancemanagementPolicy.html" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
       </div>
-    </nav>
- 
- 
- 
-    <!-- Content -->
-    <div class="flex-1 p-6">
-      <!-- <div id="navbar-placeholder"></div> -->
- 
-      <!-- Box Section -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6">
-        <!-- Card Template -->
-        <div class="bg-blue-600 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-          <h3 class="text-3xl font-bold">01</h3>
-          <p class="text-lg">Dress Code Policy</p>
-          <a href="./dresscodepolicy.html" class="mt-4 inline-block text-white hover:underline">View <i class="fas fa-arrow-circle-right"></i></a>
+
+      <!-- Box 3: Dress Code Policy -->
+      <div class="col-lg-3 col-6">
+        <div class="small-box bg-success">
+          <div class="inner">
+            <h3>07</h3>
+            <p>Recruitment Policy </p>
+          </div>
+          <div class="icon">
+            <i class="fas fa-user-plus"></i>
+          </div>
+          <a href="./recruitmentpolicy.html" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
         </div>
- 
-        <div class="bg-green-600 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-          <h3 class="text-3xl font-bold">02</h3>
-          <p class="text-lg">Work From Home Policy</p>
-          <a href="./workfromhome.html" class="mt-4 inline-block text-white hover:underline">View <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
- 
-        <div class="bg-red-600 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-          <h3 class="text-3xl font-bold">03</h3>
-          <p class="text-lg">Leave Policy</p>
-          <a href="./leavepolicy.html" class="mt-4 inline-block text-white hover:underline">View <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
- 
-        <div class="bg-gray-800 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-          <h3 class="text-3xl font-bold">04</h3>
-          <p class="text-lg">Code Of Conduct</p>
-          <a href="./codeofconduct.html" class="mt-4 inline-block text-white hover:underline">View <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
- 
-        <div class="bg-yellow-600 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-          <h3 class="text-3xl font-bold">05</h3>
-          <p class="text-lg">Health & Safety Policies</p>
-          <a href="./health&safetypolicies.html" class="mt-4 inline-block text-white hover:underline">View <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
- 
-        <div class="bg-blue-600 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-          <h3 class="text-3xl font-bold">06</h3>
-          <p class="text-lg">Performance Management</p>
-          <a href="./PerformancemanagementPolicy.html" class="mt-4 inline-block text-white hover:underline">View <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
- 
-        <div class="bg-green-600 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-          <h3 class="text-3xl font-bold">07</h3>
-          <p class="text-lg">Recruitment Policy</p>
-          <a href="./recruitmentpolicy.html" class="mt-4 inline-block text-white hover:underline">View <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
- 
-        <div class="bg-red-600 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-          <h3 class="text-3xl font-bold">08</h3>
-          <p class="text-lg">Social Media Policy</p>
-          <a href="./socialmediapolicy.html" class="mt-4 inline-block text-white hover:underline">View <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
- 
-        <div class="bg-blue-600 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-          <h3 class="text-3xl font-bold">09</h3>
-          <p class="text-lg">Compensation and Benefits</p>
-          <a href="./compensationandbenefits.html" class="mt-4 inline-block text-white hover:underline">View <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
- 
-        <div class="bg-yellow-600 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-          <h3 class="text-3xl font-bold">10</h3>
-          <p class="text-lg">Employee Grievance Redressal</p>
-          <a href="./employeegrievanceredressal.html" class="mt-4 inline-block text-white hover:underline">View <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
- 
-        <div class="bg-blue-600 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-          <h3 class="text-3xl font-bold">11</h3>
-          <p class="text-lg">Equal Opportunity and Diversity Policies</p>
-          <a href="./equalopportunityanddeiversitypolicies.html" class="mt-4 inline-block text-white hover:underline">View <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
- 
-        <div class="bg-green-600 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-          <h3 class="text-3xl font-bold">12</h3>
-          <p class="text-lg">Termination and Resignation</p>
-          <a href="./terminationandresignation.html" class="mt-4 inline-block text-white hover:underline">View <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
- 
-        <div class="bg-red-600 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-          <h3 class="text-3xl font-bold">13</h3>
-          <p class="text-lg">Adaptive Work Culture</p>
-          <a href="./adaptiveworkculturepolicy.html" class="mt-4 inline-block text-white hover:underline">View <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
- 
-        <div class="bg-yellow-600 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-          <h3 class="text-3xl font-bold">14</h3>
-          <p class="text-lg">IT & Data Security Policy</p>
-          <a href="./it&datasecuritypolicy.html" class="mt-4 inline-block text-white hover:underline">View <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
- 
-        <div class="bg-red-600 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-          <h3 class="text-3xl font-bold">15</h3>
-          <p class="text-lg">Non-discrimination</p>
-          <a href="./non-discriminationpolicy.html" class="mt-4 inline-block text-white hover:underline">View <i class="fas fa-arrow-circle-right"></i></a>
+  </div>
+
+  <!-- Box 3: Dress Code Policy -->
+  <div class="col-lg-3 col-6">
+    <div class="small-box bg-danger">
+      <div class="inner">
+        <h3>08</h3>
+        <p>Social Media Policy </p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-user-plus"></i>
+      </div>
+      <a href="./recruitmentpolicy.html" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
+    </div>
+</div>
+
+ <!-- Box 3: Dress Code Policy -->
+ <div class="col-lg-3 col-6">
+  <div class="small-box bg-primary">
+    <div class="inner">
+      <h3>09</h3>
+      <p>Compensation and Benefits </p>
+    </div>
+    <div class="icon">
+      <i class="fas fa-user-plus"></i>
+    </div>
+    <a href="./compensationandbenefits.html" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
+  </div>
+</div>
+
+    
+ <div class="col-lg-3 col-6">
+  <div class="small-box bg-warning">
+    <div class="inner">
+      <h3>10</h3>
+      <p>Employee Grievance Redressal </p>
+    </div>
+    <div class="icon">
+      <i class="fas fa-user-plus"></i>
+    </div>
+    <a href="./employeegrievanceredressal.html" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
+  </div>
+</div>
+
+
+<div class="col-lg-3 col-6">
+  <div class="small-box bg-info">
+    <div class="inner">
+      <h3>11</h3>
+      <p>Equal Opportunity and Diversity Policies </p>
+    </div>
+    <div class="icon">
+      <i class="fas fa-user-plus"></i>
+    </div>
+    <a href="./equalopportunityanddeiversitypolicies.html" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
+  </div>
+</div>
+
+
+
+<div class="col-lg-3 col-6">
+  <div class="small-box bg-success">
+    <div class="inner">
+      <h3>12</h3>
+      <p>Adaptive Work Culture Policy</p>
+    </div>
+    <div class="icon">
+      <i class="fas fa-user-plus"></i>
+    </div>
+    <a href="./adaptiveworkculturepolicy.html" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="col-lg-3 col-6">
+  <div class="small-box bg-secondary">
+    <div class="inner">
+      <h3>13</h3>
+      <p>IT & Data Security Policy</p>
+    </div>
+    <div class="icon">
+      <i class="fas fa-user-plus"></i>
+    </div>
+    <a href="./it&datasecuritypolicy.html" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
+  </div>
+</div>
+
+
+
+<div class="col-lg-3 col-6">
+  <div class="small-box bg-primary">
+    <div class="inner">
+      <h3>14</h3>
+      <p>Non-Discrimination Policy</p>
+    </div>
+    <div class="icon">
+      <i class="fas fa-user-plus"></i>
+    </div>
+    <a href="./non-discriminationpolicy.html" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
+  </div>
+</div>
+
+
         </div>
       </div>
     </div>
   </div>
- 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      fetch('navbar.html')
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById('navbar-placeholder').innerHTML = data;
- 
-          // Add event listener for logout
-          const logoutButton = document.querySelector('.logout-btn');
-          if (logoutButton) {
-            logoutButton.addEventListener('click', function (e) {
-              e.preventDefault();
-              sessionStorage.clear();
-              window.location.href = '../HTML/login.html';
-            });
-          }
-        })
-        .catch(error => console.error('Error loading navbar:', error));
-    });
-  </script>
 </body>
  
 </html>

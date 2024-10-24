@@ -236,17 +236,135 @@ img {
   flex-direction: column;
 }
 
-.policy{
-  padding-left: 50px;
-}
+  .policy{
+    padding-left: 50px;
+  }
+  
 
 
+  /* body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    color: #333;
+  }
+  
+  form {
+    margin-bottom: 20px;
+  }
+  
+  input[type="file"] {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  button {
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  #statusMessage {
+    margin-top: 10px;
+    color: green;
+  }
+  
+  #pdfDisplay {
+    margin-top: 20px;
+  }
+  
+  #pdfDisplay iframe {
+    width: 100%;
+    height: 400px;
+  }
+   */
 
-/* Highlight class for the clicked item */
-.highlight {
-  background-color: #007bff; /* Blue background */
-  color: white; /* White text color */
-  border-radius: 5px;
-  padding: 5px;
-  width: fit-content;
-}
+
+   body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .book-container {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  .book-header {
+    text-align: center;
+  }
+  
+  .book-header h1 {
+    margin: 0;
+  }
+  
+  .book-header h2 {
+    color: #666;
+    font-weight: normal;
+    margin-bottom: 20px;
+  }
+  
+  .book-content {
+    min-height: 300px;
+    padding: 20px;
+    text-align: left;
+  }
+  
+  .page {
+    display: none;
+  }
+  
+  .page.active {
+    display: block;
+  }
+  
+  .book-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+  
+  button {
+    padding: 10px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+  }
+  
+  #pageNumber {
+    font-size: 16px;
+  }
+  
