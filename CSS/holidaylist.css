@@ -269,13 +269,68 @@ a {
     width: 1%;
     min-width: 0; 
 }
-/* input,
-button,
-select,
-optgroup,
-textarea {
-  margin: 0; 
-  font-family: inherit;
-  @include font-size(inherit);
-  line-height: inherit;
-} */
+
+body {
+    background-color: #f5f7fa; /* Light background color */
+}
+  
+.main-sidebar {
+    background-color: #343a40; /* Sidebar background color */
+}
+  
+.holiday-section {
+    margin-top: 5rem; /* Space from top */
+}
+  
+h1 {
+    font-size: 2.5rem; /* Large title size */
+    color: #333; /* Dark text color */
+    font-weight: bold; /* Bold font weight */
+    margin-bottom: 1.5rem; /* Space below title */
+}
+  
+.holiday-card {
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: transform 0.2s; /* Animation for hover effect */
+    text-decoration: none; /* Remove underline */
+    color: #000; /* Change text color to black */
+    text-align: center; /* Center text */
+    padding: 20px; /* Padding inside card */
+    height: 150px; /* Fixed height for cards */
+    display: flex; /* Flexbox to center items */
+    align-items: center; /* Vertical center alignment */
+    justify-content: center; /* Horizontal center alignment */
+    font-size: 1.5rem; /* Increased font size */
+    font-weight: 600; /* Increased font weight */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Text shadow for clarity */
+}
+  
+.holiday-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+}
+  
+/* Flag-inspired backgrounds */
+.card-india {
+    background: linear-gradient(135deg, #FF9933 33%, #FFFFFF 33%, #FFFFFF 66%, #138808 66%);
+}
+  
+.card-usa {
+    background: linear-gradient(135deg, #B22234, #FFFFFF 20%, #B22234 20%, #B22234 40%, #FFFFFF 40%, #FFFFFF 60%, #B22234 60%, #B22234 80%, #FFFFFF 80%);
+    position: relative;
+}
+  
+.card-usa:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30%;
+    height: 40%;
+    background-color: #3C3B6E; /* Blue area of the flag */
+}
+  
+.card-singapore {
+    background: linear-gradient(135deg, #ED2939 50%, #FFFFFF 50%);
+}

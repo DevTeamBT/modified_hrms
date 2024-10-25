@@ -77,15 +77,7 @@
   </aside>
   
   <div class="content-wrapper">
-    <div class="content">
-      <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-          </li>
-        </ul>
-       </ul>
-      </nav>  
+    <div id="navbar-placeholder"></div>
 
       <!-- Row containing all four boxes -->
       <div class="container-fluid">
@@ -149,7 +141,7 @@
 
            <!-- Box 3: Dress Code Policy -->
            <div class="col-lg-3 col-6">
-            <div class="small-box bg-warning">
+            <div class="small-box bg-success">
               <div class="inner">
                 <h3>05</h3>
                 <p>Health & Safety Policies</p>
@@ -207,7 +199,7 @@
 
  <!-- Box 3: Dress Code Policy -->
  <div class="col-lg-3 col-6">
-  <div class="small-box bg-primary">
+  <div class="small-box bg-danger">
     <div class="inner">
       <h3>09</h3>
       <p>Compensation and Benefits </p>
@@ -221,7 +213,7 @@
 
     
  <div class="col-lg-3 col-6">
-  <div class="small-box bg-warning">
+  <div class="small-box bg-success">
     <div class="inner">
       <h3>10</h3>
       <p>Employee Grievance Redressal </p>
@@ -268,7 +260,7 @@
 
 
 <div class="col-lg-3 col-6">
-  <div class="small-box bg-secondary">
+  <div class="small-box bg-dark">
     <div class="inner">
       <h3>13</h3>
       <p>IT & Data Security Policy</p>
@@ -283,7 +275,7 @@
 
 
 <div class="col-lg-3 col-6">
-  <div class="small-box bg-primary">
+  <div class="small-box bg-danger">
     <div class="inner">
       <h3>14</h3>
       <p>Non-Discrimination Policy</p>
@@ -294,6 +286,42 @@
     <a href="./non-discriminationpolicy.html" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
   </div>
 </div>
+
+
+
+<div class="col-lg-3 col-6">
+  <div class="small-box bg-success">
+    <div class="inner">
+      <h3>15</h3>
+      <p>Termination </p>
+    </div>
+    <div class="icon">
+      <i class="fas fa-user-plus"></i>
+    </div>
+    <a href="./terminationandresignation.html" class="small-box-footer">View <i class="fas fa-arrow-circle-right"></i></a>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    fetch('navbar.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('navbar-placeholder').innerHTML = data;
+
+        // Add event listener for logout
+        const logoutButton = document.querySelector('.logout-btn');
+        if (logoutButton) {
+          logoutButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            sessionStorage.clear();
+            window.location.href = '../HTML/login.html';
+          });
+        }
+      })
+      .catch(error => console.error('Error loading navbar:', error));
+  });
+</script>
 
 
         </div>

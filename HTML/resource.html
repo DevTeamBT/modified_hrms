@@ -4,188 +4,66 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Resource</title>
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-gray-100 text-gray-900">
-  <div class="min-h-screen flex">
-    <!-- Sidebar -->
-    <aside class="w-64 bg-gray-900 text-white flex flex-col">
-      <div class="p-6">
-        <img src="../IMAGES/bodhtree-logo.png" class="w-24 mx-auto" alt="Logo">
+<body class="bg-gray-100">
+  <div class="flex">
+    <aside class="w-64 bg-gray-800 text-white h-screen shadow-lg">
+      <div class="flex items-center justify-center mt-3 pb-3">
+        <img class="h-12" src="../IMAGES/bodhtree-logo.png" alt="Logo" />
       </div>
-
-      <!-- Search Box -->
-      <div class="px-6 mb-4">
-        <div class="relative">
-          <input type="search" class="w-full px-4 py-2 text-gray-900 rounded-md" placeholder="Search">
-          <button class="absolute top-0 right-0 mt-2 mr-3 text-gray-600">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
+      <div class="flex items-center justify-center mt-3 mb-5">
+        <input type="search" class="w-full px-4 py-2 rounded-md text-gray-800" placeholder="Search..." aria-label="Search">
+        <button class="ml-2 p-2 bg-blue-500 rounded-md text-white transition-transform transform hover:scale-105">
+          <i class="fas fa-search"></i>
+        </button>
       </div>
-
-      <!-- Navigation -->
-      <nav class="flex-1 px-6">
+      <nav class="mt-5">
         <ul>
-          <li class="mb-2">
-            <a href="./home.html" class="flex items-center space-x-2 py-2 px-3 hover:bg-gray-800 rounded-md">
-              <i class="fas fa-home"></i>
-              <span>Home</span>
-            </a>
-          </li>
-          <li class="mb-2">
-            <a href="#" class="flex items-center space-x-2 py-2 px-3 hover:bg-gray-800 rounded-md">
-              <i class="fas fa-th"></i>
-              <span>My Details</span>
-            </a>
-          </li>
-          <li class="mb-2">
-            <a href="#" class="flex items-center space-x-2 py-2 px-3 hover:bg-gray-800 rounded-md">
-              <i class="fas fa-copy"></i>
-              <span>Time Sheet</span>
-            </a>
-          </li>
-          <li class="mb-2">
-            <a href="resource.html" class="flex items-center space-x-2 py-2 px-3 hover:bg-gray-800 rounded-md">
-              <i class="fas fa-chart-pie"></i>
-              <span>Resources</span>
-            </a>
-          </li>
-          <li class="mb-2">
-            <a href="#" class="flex items-center space-x-2 py-2 px-3 hover:bg-gray-800 rounded-md">
-              <i class="fas fa-edit"></i>
-              <span>Forums</span>
-            </a>
-          </li>
-          <li class="mb-2">
-            <a href="#" class="flex items-center space-x-2 py-2 px-3 hover:bg-gray-800 rounded-md">
-              <i class="fas fa-table"></i>
-              <span>Organisations</span>
-            </a>
-          </li>
+          <li><a href="./home.html" class="block py-2 px-4 hover:bg-gray-700 transition-colors">Home</a></li>
+          <li><a href="#" class="block py-2 px-4 hover:bg-gray-700 transition-colors">My Details</a></li>
+          <li><a href="#" class="block py-2 px-4 hover:bg-gray-700 transition-colors">Time Sheet</a></li>
+          <li><a href="#" class="block py-2 px-4 hover:bg-gray-700 transition-colors">Resources</a></li>
+          <li><a href="#" class="block py-2 px-4 hover:bg-gray-700 transition-colors">Forums</a></li>
+          <li><a href="#" class="block py-2 px-4 hover:bg-gray-700 transition-colors">Organisations</a></li>
         </ul>
       </nav>
     </aside>
+    
 
-    <!-- Content -->
-    <div class="flex-1 p-6">
+    <div class="flex-1 p-10">
       <div id="navbar-placeholder"></div>
-
-      <!-- Box Section -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
-        <!-- Box 1: Dress Code Policy -->
-        <div class="bg-blue-500 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-          <h3 class="text-3xl font-bold">01</h3>
-          <p>Dress Code Policy</p>
-          <a href="./dresscodepolicy.html" class="mt-4 inline-block text-white hover:underline">View <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
-        
-
-        <!-- Box 2: Work From Home Policy -->
-        <div class="bg-green-500 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-          <h3 class="text-3xl font-bold">02</h3>
-          <p>Work From Home Policy</p>
-          <a href="./workfromhome.html" class="mt-4 inline-block text-white hover:underline">View <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
-        
-        
-
-        <!-- Box 3: Leave Policy -->
-        <div class="bg-red-500 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-          <h3 class="text-3xl font-bold">03</h3>
-          <p>Leave Policy</p>
-          <a href="./leavepolicy.html" class="mt-4 inline-block text-white hover:underline">View <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
-
-        <!-- Box 4: Code Of Conduct -->
-        <div class="bg-gray-800 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-          <h3 class="text-3xl font-bold">04</h3>
-          <p>Code Of Conduct</p>
-          <a href="./codeofconduct.html" class="mt-4 inline-block text-white hover:underline">View <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
-
-        <!-- Box 5: Health & Safety Policies -->
-        <div class="bg-yellow-500 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-          <h3 class="text-3xl font-bold">05</h3>
-          <p>Health & Safety Policies</p>
-          <a href="./health&safetypolicies.html" class="mt-4 inline-block text-white hover:underline">View <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
-
-        <!-- Box 6: Performance Management -->
-        <div class="bg-blue-500 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-          <h3 class="text-3xl font-bold">06</h3>
-          <p>Performance Management</p>
-          <a href="./PerformancemanagementPolicy.html" class="mt-4 inline-block text-white hover:underline">View <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
-
-        <!-- Box 7: Recruitment Policy -->
-        <div class="bg-green-500 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-          <h3 class="text-3xl font-bold">07</h3>
-          <p>Recruitment Policy</p>
-          <a href="./recruitmentpolicy.html" class="mt-4 inline-block text-white hover:underline">View <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
-
-        <!-- Box 8: Social Media Policy -->
-        <div class="bg-red-500 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-          <h3 class="text-3xl font-bold">08</h3>
-          <p>Social Media Policy</p>
-          <a href="./socialmediapolicy.html" class="mt-4 inline-block text-white hover:underline">View <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
-
-        <!-- Box 9: Compensation and Benefits -->
-        <div class="bg-blue-500 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-          <h3 class="text-3xl font-bold">09</h3>
-          <p>Compensation and Benefits</p>
-          <a href="./compensationandbenefits.html" class="mt-4 inline-block text-white hover:underline">View <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
-
-        <!-- Box 10: Employee Grievance Redressal -->
-        <div class="bg-yellow-500 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-          <h3 class="text-3xl font-bold">10</h3>
-          <p>Employee Grievance Redressal</p>
-          <a href="./employeegrievanceredressal.html" class="mt-4 inline-block text-white hover:underline">View <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
-
-        <!-- Box 11: Equal Opportunity and Diversity Policies -->
-        <div class="bg-blue-500 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-          <h3 class="text-3xl font-bold">11</h3>
-          <p>Equal Opportunity and Diversity Policies</p>
-          <a href="./equalopportunityanddeiversitypolicies.html" class="mt-4 inline-block text-white hover:underline">View <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
-
-        <!-- Box 12: Human Resource Policy -->
-        <div class="bg-green-500 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-          <h3 class="text-3xl font-bold">12</h3>
-          <p>Terminarion and Resignation</p>
-          <a href="./terminationandresignation.html" class="mt-4 inline-block text-white hover:underline">View <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
-
-        <!-- Box 13: Training and Development -->
-        <div class="bg-red-500 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-          <h3 class="text-3xl font-bold">13</h3>
-          <p>Adaptive Work Culture</p>
-          <a href="./adaptiveworkculturepolicy.html" class="mt-4 inline-block text-white hover:underline">View <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
-
-        <!-- Box 14: Employee Engagement Initiatives -->
-        <div class="bg-yellow-500 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-          <h3 class="text-3xl font-bold">14</h3>
-          <p>IT & Data Security Policy</p>
-          <a href="./it&datasecuritypolicy.html" class="mt-4 inline-block text-white hover:underline">View <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
-
-          <!-- Box 15: Training and Development -->
-          <div class="bg-red-500 text-white p-6 rounded-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-            <h3 class="text-3xl font-bold">15</h3>
-            <p>Non-discrimination</p>
-            <a href="./non-discriminationpolicy.html" class="mt-4 inline-block text-white hover:underline">View <i class="fas fa-arrow-circle-right"></i></a>
+      <div class="container mx-auto">
+       
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="bg-blue-600 text-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <h3 class="text-2xl font-semibold">01</h3>
+            <p class="text-lg mt-2">Holiday List</p>
+            <a href="./holidaylist.html" class="text-white underline mt-3 inline-block transition-all duration-300 hover:text-blue-200">View <i class="fas fa-arrow-circle-right"></i></a>
           </div>
+
+          <div class="bg-green-600 text-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <h3 class="text-2xl font-semibold">02</h3>
+            <p class="text-lg mt-2">Policies</p>
+            <a href="./policies.html" class="text-white underline mt-3 inline-block transition-all duration-300 hover:text-green-200">View <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+
+          <div class="bg-yellow-600 text-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <h3 class="text-2xl font-semibold">03</h3>
+            <p class="text-lg mt-2">Birthday List</p>
+            <a href="#" class="text-white underline mt-3 inline-block transition-all duration-300 hover:text-yellow-200">View <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+
+          <div class="bg-red-600 text-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <h3 class="text-2xl font-semibold">04</h3>
+            <p class="text-lg mt-2">Events</p>
+            <a href="#" class="text-white underline mt-3 inline-block transition-all duration-300 hover:text-red-200">View <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       fetch('navbar.html')
@@ -206,5 +84,6 @@
         .catch(error => console.error('Error loading navbar:', error));
     });
   </script>
+  <script src="../JAVASCRIPT/resource.js"></script>
 </body>
 </html>

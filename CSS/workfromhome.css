@@ -368,3 +368,13 @@ img {
     font-size: 16px;
   }
   
+
+
+    /* Highlight class for the clicked item */
+.highlight {
+  background-color: #007bff; /* Blue background */
+  color: white; /* White text color */
+  border-radius: 5px;
+  padding: 5px;
+  width: fit-content;
+}
