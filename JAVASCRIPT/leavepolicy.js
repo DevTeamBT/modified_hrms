@@ -1,7 +1,7 @@
 // Function to show the image and highlight the selected item
 function showImage(imageSrc, listItem) {
     const imgElement = document.getElementById('policy-image');
-    
+
     // Display the image
     if (imageSrc) {
         imgElement.src = imageSrc;        // Set the image source
@@ -27,4 +27,9 @@ document.querySelectorAll('#content li').forEach(item => {
         const imageSrc = this.getAttribute('onclick').match(/'([^']+)'/)[1];
         showImage(imageSrc, this);  // Pass the clicked list item for highlighting
     });
+});
+
+// Prevent right-click context menu on the image
+document.getElementById('policy-image').addEventListener('contextmenu', function(event) {
+    event.preventDefault(); // Prevent the default context menu from appearing
 });
