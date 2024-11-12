@@ -83,8 +83,7 @@
   
   <div class="content-wrapper">
     <div id="navbar-placeholder"></div>
-       
-      </nav>
+    
       <div class="container-fluid">
         <div class="container">
           <div class="form">
@@ -93,7 +92,7 @@
                 <div class="col-sm-6">
                 <label for="employeeNumber">Employee Number <span class="mandatory">*</span></label>
                 <input type="text" id="employeeNumber" name="employeeNumber" class="form-control"  required>
-                <div id="validationMessage" class="text-danger" style="display:none;"></div>
+                <span id="employeeNumberError" class="error-message" style="display: block; color: red;"></span>
             </div>
             <div class="col-sm-6">
                 <label for="photo">Profile Photo </label>
@@ -257,11 +256,12 @@
           <div class="col-sm-6">
                 <label for="officeEmail">Office Email ID <span class="mandatory">*</span></label>
                 <input type="email" id="officeEmail" name="officeEmail" class="form-control" required>
+                <span id="officeEmailError" class="error-message"style="display: none; color: red;"></span>
             </div>
             <div class="col-sm-6">
                 <label for="password">Password <span class="mandatory">*</span></label>
                 <input type="password" id="password" name="password" class="form-control" required>
-                <span class="error-message" id="passwordError" style="color: red; display: none;"></span>
+                <span  class="error-message" id="passwordError" style="color: red; display: none;"></span>
             </div>
         </div>
 
@@ -293,7 +293,7 @@
             </div>
             <div class="col-sm-6">
                 <label for="mobileNumber">Mobile Number <span class="mandatory">*</span></label>
-                <input type="tel" id="mobileNo" name="mobileNumber" class="form-control" required>
+                <input type="tel" id="mobileNo" name="mobileNumber" class="form-control" pattern="[0-9]{10}" required>
                 <span class="error-message" id="mobileNoError" style="color: red; display: none;"></span>
             </div>
         </div>
@@ -398,7 +398,6 @@
                   </div>
 
         <div class="buttons">
-          <button type="button" id="editButton" class="btn btn-info">Edit</button>
           <button type="submit" id="submitButton" class="btn btn-primary">Submit</button>
           <button type="button" id="nextButton" class="btn btn-info">Next</button>
       </div>

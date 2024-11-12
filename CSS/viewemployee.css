@@ -1,230 +1,145 @@
+/* General Body Styling */
 body {
-    margin: 0;
-    font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    font-weight: 400;
-    background-color: mintcream;
-    min-height: 100vh; /* Ensures the body takes full viewport height */
-    overflow-y: auto; /* Allows vertical scrolling */
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
-.container {
-    max-width: 100%; /* Allow the container to take full width */
-    margin: auto;
-    padding: 10px; /* Reduced padding for container */
-    background: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    border-radius: 8px; /* Rounded corners */
-    overflow-x: auto; /* Allow horizontal scrolling */
-    margin-bottom: 20px; /* Adds space below the container to ensure scrolling */
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-/* Adjust table to fit within the page */
-table {
-    width: 100%; /* Table takes full width of the container */
-    border-collapse: collapse;
-    margin-bottom: 20px; /* Adds space below the table */
-    table-layout: auto; /* Allow table to resize based on content */
-}
-
-
-th, td {
-    padding: 8px 12px;
-    text-align: left;
-    white-space: nowrap; /* Prevents wrapping of text */
-    border: 1px solid #ddd;
-}
-
-.table-cell-content {
-    max-height: 50px; /* Set the height you want for each cell */
-    overflow-y: auto; /* Enable vertical scrolling */
-    overflow-x: hidden; /* Prevent horizontal scrolling */
-    display: block; /* Ensures the div behaves like a block */
-    padding: 5px; /* Add some padding for aesthetics */
-    box-sizing: border-box; /* Include padding in height calculation */
-}
-tbody {
-    overflow-y: auto; /* Enables vertical scrolling inside the body */
-} 
-
-th {
-    background-color: #007BFF; /* Header background color */
-    color: white; /* Header text color */
-}
-
-td {
-    background-color: #f9f9f9; /* Light background for table cells */
-}
-
-/* Change background color of table rows on hover */
-tr:hover {
-    background-color: #f1f1f1;
-}
-
-
-/* Responsive styles */
-@media screen and (max-width: 768px) {
-    table {
-        font-size: 10px; /* Even smaller font size on smaller screens */
-    }
-    th, td {
-        padding: 4px; /* Further reduced padding */
-    }
-}
-
-/* Alternating row colors for better readability */
-tr:nth-child(even) td {
-    background-color: #f2f2f2; /* Light gray for even rows */
-}
-
-/* Sidebar and navigation styles */
+/* Sidebar Styling */
 .main-sidebar {
-    width: 280px;
-    height: 2000vh;
-    transition: width 0.3s ease;
-  }
-  
-  .main-sidebar.closed {
-    width: 55px;
-  }
-  
-  .sidebar {
-    overflow-y: auto;
-    position: fixed;
-    padding-right: 0.5rem;
-  }
-  
-  a {
-    color: inherit; /* Default link color */
-    text-decoration: none;
-    display: block;
-    padding: 10px;
-  }
-  
-  a.active {
-    color: #007bff; /* Text color for active link */
-    background-color: black; /* Background color for active link */
-  }
-  
-.nav-sidebar .nav-item .nav-link {
-    margin-bottom: .5rem;
+    width: 250px;
+    background-color: #343a40;
+    position: fixed; /* Keep sidebar fixed */
+    height: 100vh; /* Full height */
+    padding-top: 1rem;
+    overflow-y: auto; /* Allow vertical scroll in sidebar if content overflows */
+}
+
+.main-sidebar .nav-link {
+    color: #c2c7d0;
+    font-weight: 500;
+}
+
+.main-sidebar .nav-link:hover {
+    color: #ffffff;
+}
+
+.main-sidebar .nav-icon {
+    margin-right: 8px;
+}
+
+.user-panel {
     display: flex;
+    justify-content: center;
     align-items: center;
 }
 
-.nav-sidebar .menu-open .nav-treeview {
-    display: block;
+.user-panel .image img {
+    width: 80px;
+    height: auto;
 }
 
-.nav-sidebar .nav-item .nav-icon {
-    margin-left: .05rem;
-    font-size: 1.2rem;
-    margin-right: .2rem;
-    width: 1.6rem;
+/* Search Bar in Sidebar */
+.search-container {
+    padding: 1rem;
 }
 
-.nav-sidebar .nav-link p {
-    margin: 0;
+.form-control-sidebar {
+    background-color: #495057;
+    border: none;
+    color: #ffffff;
 }
 
-.main-sidebar.closed .nav-sidebar .nav-item .nav-link p {
-    display: none;
+/* Fixed Navbar */
+.fixed-navbar {
+    position: fixed;
+    top: 0; /* Stay at the top */
+    left: 250px; /* Align with the sidebar */
+    right: 0; /* Extend to the right */
+    background-color: #fff; /* Navbar background */
+    z-index: 1000; /* Ensure it stays above other content */
+    padding: 1rem; /* Space inside the navbar */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
 }
 
-.main-sidebar.closed .user-panel .image {
-    display: none;
-}
-
-.main-sidebar.closed .user-panel img {
-    height: 30px;
-    width: 2.0rem;
-}
-
-[class*=sidebar-dark-] {
-    background-color: #343a40;
-}
-
-[class*=sidebar-dark-] .sidebar a {
-    color: #c2c7d0;
-}
-
-[class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active,
-[class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:focus,
-[class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:hover {
-    background-color: rgba(255, 255, 255, .9);
-    color: #343a40;
-}
-
-[class*=sidebar-dark] .btn-sidebar,
-[class*=sidebar-dark] .form-control-sidebar {
-    background-color: #3f474e;
-    border: 1px solid #56606a;
-    color: #fff;
-}
-
-.wrapper {
-    display: flex;
-    flex-direction: row;
-}
-
+/* Content Wrapper */
 .content-wrapper {
-    flex: 1;
-    overflow-y: auto; /* Ensures vertical scrolling within content */
-    padding: 15px; /* Adds padding inside the content area */
+    margin-left: 250px; /* Space for the sidebar */
+    padding: 5rem 2rem 2rem; /* Padding for top and sides */
+    position: relative; /* Position for inner elements */
+    overflow-y: auto; /* Allow vertical scroll on main content */
+    height: calc(100vh - 5rem); /* Full height minus navbar height */
 }
 
-.table-striped tbody tr:nth-of-type(odd) {
-    background-color: rgba(0, 0, 0, .05);
+/* Table Wrapper for Scrollbars */
+.table-responsive {
+    width: 100%; /* Full width of the container */
+    max-width: 2000px; /* Increased maximum width for the table */
+    height: 90vh; /* Increased height for the table container */
+    overflow: auto; /* Enable both vertical and horizontal scrolling */
+    margin: 20px auto; /* Center the wrapper */
+    border: 1px solid #ddd; /* Optional border for styling */
+    background-color: #ffffff; /* Table background */
+    border-radius: 5px; /* Optional rounded corners */
 }
 
+/* Centering the Employee Table */
+#employeeTable {
+    width: 100%; /* Full width of the table */
+    border-collapse: collapse;
+    font-size: 20px;
+    
+}
+
+#employeeTable th, #employeeTable td {
+    padding: 10px;
+    text-align: left; /* Aligns text to the left */
+    border: 1px solid #ddd;
+ 
+}
+
+#employeeTable th {
+    background-color: #f0f2f5;
+    color: #333;
+    font-weight: bold;
+   
+}
+
+#employeeTable tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+
+}
+
+/* Pagination Styling */
+#pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#pagination button {
+    margin: 0 5px;
+}
+
+/* Buttons Styling */
 .btn-primary {
-    color: #fff;
     background-color: #007bff;
     border-color: #007bff;
-    box-shadow: none;
-}
-
-.user-panel .image {
-    display: inline-block;
-    margin-left: 23px;
-}
-
-.user-panel img {
-    height: 30px;
-    width: 8.0rem;
+    color: white;
 }
 
 .btn-primary:hover {
-    color: #fff;
-    background-color: #0069d9;
-    border-color: #0062cc;
+    background-color: #0056b3;
 }
 
-/* Additional responsive styling */
-@media screen and (max-width: 600px) {
-    .container {
-        padding: 5px; /* Reduced padding for small screens */
-    }
-
-    table {
-        font-size: 9px; /* Even smaller font size on very small screens */
-    }
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: white;
 }
 
-
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 280px;
-    width: calc(100% - 280px);
-    background-color: #fff;
-    height: 60 px; /* Fixed height */
-    padding: 1rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: left 0.3s ease, width 0.3s ease;
-    z-index: 1000;
+.btn-success:hover {
+    background-color: #218838;
 }

@@ -72,7 +72,7 @@ async function loginUser(event) {
                 case 'manager':
                     window.location.replace('/HTML/manager.html');
                     break;
-                case 'superadmin':
+                case 'superAdmin':
                     window.location.replace('/HTML/superadmin.html');
                     break;
                 default:

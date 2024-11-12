@@ -81,13 +81,66 @@
 
       <!-- Main Content -->
       <div class="container-fluid">
-        <div id="greeting" class="alert alert-info" role="alert"></div>
+        <div id="greeting" class="alert alert-info mt-3" role="alert"></div>
         <div id="quote" class="alert alert-secondary" role="alert"></div>
       </div>
     </div>
   </div>
 </div>
+       
+        <!-- Sign-In Section -->
+        <div class="container">
+            <div class="card p-4">
+                <h3 class="text-center">Sign-In To Your Session</h3>
+                
+                <!-- Current Time Display -->
+                <p id="current-time" class="text-center"></p>
 
+                <!-- Work Location Dropdown -->
+                <div class="mb-3">
+                    <label for="location" class="form-label">Work Location</label>
+                    <select class="form-select" id="location" required>
+                        <option value="">Select location</option>
+                        <option value="wfh">Work From Home</option>
+                        <option value="office">Office</option>
+                        <option value="client-location">Client Location</option>
+                    </select>
+                </div>
+
+                <!-- Sign In and Sign Out Buttons -->
+                <div class="d-flex justify-content-center mb-3">
+                    <button id="signin-btn" class="btn btn-primary me-3" onclick="submitSignin()">Sign In</button>
+                    <button id="signout-btn" class="btn btn-danger" style="display: none;" onclick="showSignoutConfirmation()">Sign Out</button>
+                </div>
+
+                <!-- Messages and Sign-In Time -->
+                <p id="signin-time" class="text-center"></p>
+                <p id="message" class="text-center"></p>
+
+                <!-- Swipe History -->
+                <h3 class="text-center">Swipe History:</h3>
+                <ul id="swipes-list" class="list-unstyled text-center"></ul>
+            </div>
+        </div>
+   <!-- Signout Confirmation Modal -->
+   <div class="modal fade" id="signoutConfirmationModal" tabindex="-1" aria-labelledby="signoutConfirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="signoutConfirmationModalLabel">Confirm Signout</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to sign out?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="confirmSignout()">Sign Out</button>
+            </div>
+            <div id="swipes-list"></div>
+        </div>
+    </div>
+</div>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     fetch('navbar.html')
@@ -103,8 +156,10 @@
             sessionStorage.clear();
             window.location.href = '../HTML/login.html';
           });
-        }
-      })
+        } else {
+    console.warn('Logout button not found.');
+  }
+})
       .catch(error => console.error('Error loading navbar:', error));
   });
 </script>

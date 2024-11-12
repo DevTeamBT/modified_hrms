@@ -47,7 +47,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="./mydetails.html " class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>My Details</p>
             </a>
@@ -81,10 +81,10 @@
     </div>
   </aside>
   
-  <div class="content-wrapper">
+  <div class="fixed-navbar">
     <div id="navbar-placeholder"></div>
 
-    <div class="container">
+    <div class="table-responsive">
         <h1>Employee Details</h1>
         <table id="employeeTable">
             <thead>
@@ -109,14 +109,18 @@
                     <th>Role Name</th>
                     <th>Shift Timing</th>
                     <th>Leave Balance</th>
-
-
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <!-- Employee rows will be populated here -->
             </tbody>
         </table>
+        <div id="pagination">
+          <button id="prevPage" class="btn btn-primary">Previous</button>
+          <span id="pageInfo"></span>
+          <button id="nextPage" class="btn btn-primary">Next</button>
+      </div>
     </div>
     </div>
     <script>
@@ -138,6 +142,7 @@
           })
           .catch(error => console.error('Error loading navbar:', error));
       });
+      
     </script>
     <script src="../JAVASCRIPT/viewemployee.js"></script> <!-- Link to JS file -->
 </body>

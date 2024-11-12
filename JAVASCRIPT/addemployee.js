@@ -59,65 +59,6 @@ document.addEventListener("DOMContentLoaded", function() {
             isValid = false;
         }
     });
-      
-   // Validate employee number uniqueness
-const employeeNumberField = document.getElementById('employeeNumber');
-const errorMessageElement = document.getElementById('employeeNumberError');
-
-employeeNumberField.addEventListener('input', validateEmployeeNumber);
-
-function validateEmployeeNumber() {
-    return new Promise((resolve, reject) => {
-        // Clear previous error message and styles
-        employeeNumberField.style.border = '';
-        if (errorMessageElement) {
-            errorMessageElement.style.display = 'none';
-        }
-
-        // Only validate if there's input
-        if (employeeNumberField.value.trim()) {
-            const employeeNumber = employeeNumberField.value.trim();
-            console.log('Validating employee number:', employeeNumber);
-
-            // Call the API to validate the employee number
-            fetch(`http://172.16.2.6:4000/users?employeeNumber=${encodeURIComponent(employeeNumber)}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => {
-                if (!response.ok) {
-                    console.error(`HTTP error! status: ${response.status}`);
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('API Data:', data);
-                if (data.exists) {
-                    employeeNumberField.style.border = '2px solid red';
-                    errorMessageElement.textContent = 'Employee number already exists.';
-                    errorMessageElement.style.display = 'block';
-                    resolve(false);
-                } else {
-                    employeeNumberField.style.border = '';
-                    errorMessageElement.style.display = 'none';
-                    resolve(true);
-                }
-            })
-            .catch(error => {
-                console.error('Error validating employee number:', error);
-                errorMessageElement.textContent = 'An error occurred while validating. Please try again.';
-                errorMessageElement.style.display = 'block';
-                reject(error);
-            });
-        } else {
-            resolve(true); // If the field is empty, consider it valid
-        }
-    });
-}
-
     
         // Validate password (at least one uppercase letter, one number, and one special character)
         const passwordField = document.getElementById('password');
@@ -217,8 +158,92 @@ function validateEmployeeNumber() {
         return isValid;
     }
     
- 
-    
+           // Function to validate both employee number and office email uniqueness
+    function validateEmployeeNumberAndEmail() {
+        const employeeNumberField = document.getElementById('employeeNumber');
+        const emailField = document.getElementById('officeEmail');
+        const employeeNumberErrorElement = document.getElementById('employeeNumberError');
+        const emailErrorElement = document.getElementById('officeEmailError');
+
+        return new Promise((resolve, reject) => {
+            const employeeNumber = employeeNumberField?.value.trim();
+            const officeEmail = emailField?.value.trim();
+
+            // Clear previous error messages
+            employeeNumberField.style.border = '';
+            emailField.style.border = '';
+            employeeNumberErrorElement.style.display = 'none';
+            emailErrorElement.style.display = 'none';
+
+            // Only validate if the employee number and email have values
+            if (!employeeNumber && !officeEmail) {
+                resolve(true);  // If both fields are empty, consider it valid
+                return;
+            }
+
+            // Validate employee number and email
+            fetch(`http://172.16.2.6:4000/users?employeeNumber=${encodeURIComponent(employeeNumber)}&officeEmail=${encodeURIComponent(officeEmail)}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                console.log('response ', response)
+                if (!response.ok) {
+                    console.error(`HTTP error! status: ${response.status}`);
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                let isValid = true;
+
+                // Validate if employee number exists
+                if (data.employeeNumberExists) {
+                    employeeNumberField.style.border = '2px solid red';
+                    employeeNumberErrorElement.textContent = 'Employee number already exists.';
+                    employeeNumberErrorElement.style.display = 'block';
+                    isValid = false;
+                }
+
+                // Validate if office email exists
+                if (data.officeEmailExists) {
+                    emailField.style.border = '2px solid red';
+                    emailErrorElement.textContent = 'Office email already exists.';
+                    emailErrorElement.style.display = 'block';
+                    isValid = false;
+                }
+
+                resolve(isValid);  // Resolve the promise with validation result
+            })
+            .catch(error => {
+                console.error('Error validating employee number and email:', error);
+                employeeNumberErrorElement.textContent = 'Error occurred during validation. Please try again.';
+                emailErrorElement.textContent = 'Error occurred during validation. Please try again.';
+                employeeNumberErrorElement.style.display = 'block';
+                emailErrorElement.style.display = 'block';
+                reject(error);
+            });
+        });
+    }
+
+    // Form submission logic with validation for employee number and email
+    document.getElementById('employeeForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Always prevent default submission
+
+        if (validateForm()) {
+            validateEmployeeNumberAndEmail().then(employeeNumberAndEmailIsValid => {
+                if (employeeNumberAndEmailIsValid) {
+                    // If both form and employee number/email are valid, submit the form
+                    postEmployeeDetails(event);
+                }
+            }).catch(error => {
+                console.error('Error during employee number and email validation:', error);
+            });
+        }
+    });
+
     // Update confirmation date based on date of joining and probation period
     function updateConfirmationDate() {
         const dateOfJoiningInput = document.getElementById('dateOfJoining');
@@ -288,14 +313,22 @@ function validateEmployeeNumber() {
         fetch('http://172.16.2.6:4000/api/users', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             },
-            credentials: 'include',
-            body: JSON.stringify(employeeDetails),
+          body: JSON.stringify(employeeDetails),
         })
         .then(response => {
+            console.log('response ', response)
+            if (response.status === 400) {
+                // Custom handling for duplicate employee number or email
+                return response.json().then(errorData => {
+                    throw new Error(errorData.message || 'Employee number or office email already exists.');
+                });
+            }
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                console.error(`HTTP error! status: ${response.status}`);
+                throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
             }
             return response.json();
         })
@@ -304,45 +337,17 @@ function validateEmployeeNumber() {
             alert('Employee data successfully submitted');
         })
         .catch(error => {
-            console.error('Error submitting employee data:', error);
-            alert('Failed to submit employee data. Please try again.');
-        });
-    }
-
-    // Function to edit employee details
-    function editEmployeeDetails(event) {
-        event.preventDefault();
-
-        const employeeId = document.getElementById('employeeId').value;
-        const updatedDetails = {
-            fullName: `${document.getElementById('firstName').value} ${document.getElementById('lastName').value}`,
-            department: document.getElementById('department').value,
-            // Add other fields if necessary
-        };
-
-        fetch(`http://172.16.2.6:4000/employee/${employeeId}`, { // Corrected variable name from `_id` to `employeeId`
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            credentials: 'include',
-            body: JSON.stringify(updatedDetails),
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+            if (error.message.includes('already exists')) {
+                // Handle case when employee number or email already exists
+                alert('Error: Employee number or office email already exists.');
+            } else {
+                console.error('Error submitting employee data:', error);
+                alert('Failed to submit data. Please try again.');
             }
-            return response.json();
-        })
-        .then(data => {
-            alert('Employee data successfully updated');
-        })
-        .catch(error => {
-            alert('Failed to update employee data. Please try again.');
         });
     }
 
-    // Event listener for the form submission
+      // Event listener for the form submission
     const form = document.getElementById('employeeForm');
     form.addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent the default form submission

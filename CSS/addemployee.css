@@ -360,3 +360,21 @@ a:hover {
     height: 30px;
     width: 8.0rem;
 }
+
+/* General styling for error messages */
+.error-message {
+    font-size: 0.9em; /* Slightly smaller font size */
+    color: red; /* Red color for error messages */
+    margin-top: 0.5em; /* Space above the error message */
+    display: block; /* Ensure it displays as a block element */
+}
+
+/* Highlight the input field on error */
+input:invalid {
+    border: 2px solid red; /* Red border for invalid inputs */
+}
+
+/* Optional: Styling for valid inputs (if you want to show them as well) */
+input:valid {
+    border: 2px solid green; /* Green border for valid inputs */
+}
