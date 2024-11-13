@@ -1,89 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
+ 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Resource</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <title>Resources</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../CSS/resource.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- </head>
+ 
+<body class="bg-gray-100 text-gray-900"> -->
+ 
 </head>
-<body class="bg-gray-100">
-  <div class="flex">
-    <aside class="w-64 bg-gray-800 text-white h-screen shadow-lg">
-      <div class="flex items-center justify-center mt-3 pb-3">
-        <img class="h-12" src="../IMAGES/bodhtree-logo.png" alt="Logo" />
-      </div>
-      <div class="flex items-center justify-center mt-3 mb-5">
-        <input type="search" class="w-full px-4 py-2 rounded-md text-gray-800" placeholder="Search..." aria-label="Search">
-        <button class="ml-2 p-2 bg-blue-500 rounded-md text-white transition-transform transform hover:scale-105">
+<body class="min-h-screen bg-gray-100 text-gray-900 transition-colors duration-300">
+ 
+<div class="flex min-h-screen">
+  <!-- Sidebar -->
+  <aside id="sidebar" class="sidebar w-72 bg-gray-900 text-gray-100 py-6 px-4">
+    <div class="text-center mb-6 logo-space">
+      <img class="mx-auto  h-20" src="../IMAGES/bodhtree-logo.png" alt="Logo" />
+    </div>
+   
+    <!-- Search Bar -->
+    <div class="relative mb-4">
+      <input id="search-input" class="bg-gray-800 text-gray-300 pl-10" type="search" placeholder="Search" aria-label="Search">
+      <button id="search-button" class="text-gray-300 absolute right-3 top-1/2 transform -translate-y-1/2">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+ 
+    <nav>
+      <ul>
+        <li class="mb-4 relative">
+          <a href="./home.html" class="flex items-center space-x-3 hover:bg-gray-800 py-2 px-4 rounded-md">
+            <i class="fas fa-home text-blue-400"></i>
+            <span class="sidebar-icon">Home</span>
+            <span class="sidebar-tooltip">Home</span>
+          </a>
+        </li>
+        <li class="mb-4 relative">
+          <a href="./mydetails.html" class="flex items-center space-x-3 hover:bg-gray-800 py-2 px-4 rounded-md">
+            <i class="fas fa-th text-green-400"></i>
+            <span class="sidebar-icon">My Details</span>
+            <span class="sidebar-tooltip">My Details</span>
+          </a>
+        </li>
+        <li class="mb-4 relative">
+          <a href="#" class="flex items-center space-x-3 hover:bg-gray-800 py-2 px-4 rounded-md">
+            <i class="fas fa-clock text-purple-400"></i>
+            <span class="sidebar-icon">Time Sheet</span>
+            <span class="sidebar-tooltip">Time Sheet</span>
+          </a>
+        </li>
+        <li class="mb-4 relative">
+          <a href="./resource.html" class="flex items-center space-x-3 hover:bg-gray-800 py-2 px-4 rounded-md">
+            <i class="fas fa-chart-pie text-red-400"></i>
+            <span class="sidebar-icon">Resources</span>
+            <span class="sidebar-tooltip">Resources</span>
+          </a>
+        </li>
+        <li class="mb-4 relative">
+          <a href="#" class="flex items-center space-x-3 hover:bg-gray-800 py-2 px-4 rounded-md">
+            <i class="fas fa-comments text-yellow-400"></i>
+            <span class="sidebar-icon">Forums</span>
+            <span class="sidebar-tooltip">Forums</span>
+          </a>
+        </li>
+        <li class="mb-4 relative">
+          <a href="#" class="flex items-center space-x-3 hover:bg-gray-800 py-2 px-4 rounded-md">
+            <i class="fas fa-building text-orange-400"></i>
+            <span class="sidebar-icon">Organizations</span>
+            <span class="sidebar-tooltip">Organizations</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+    
+
+  
+  <!-- Main Content -->
+  <div class="flex-1 ml-72 transition-all duration-300" id="main-content">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center space-x-4">
+        <button id="toggle-button" class="text-gray-900 hover:text-blue-500" aria-label="Toggle sidebar" aria-expanded="false">
+          <i class="fas fa-bars"></i>
+        </button>
+        <input id="search-input" class="bg-gray-800 text-gray-300 rounded-md px-4 py-2" type="search" placeholder="Search" aria-label="Search">
+        <button id="search-button" class="text-gray-300 hover:text-blue-500 transition-colors duration-300">
           <i class="fas fa-search"></i>
         </button>
       </div>
-      <nav class="mt-5">
-        <ul>
-          <li><a href="./home.html" class="block py-2 px-4 hover:bg-gray-700 transition-colors">Home</a></li>
-          <li><a href="#" class="block py-2 px-4 hover:bg-gray-700 transition-colors">My Details</a></li>
-          <li><a href="#" class="block py-2 px-4 hover:bg-gray-700 transition-colors">Time Sheet</a></li>
-          <li><a href="#" class="block py-2 px-4 hover:bg-gray-700 transition-colors">Resources</a></li>
-          <li><a href="#" class="block py-2 px-4 hover:bg-gray-700 transition-colors">Forums</a></li>
-          <li><a href="#" class="block py-2 px-4 hover:bg-gray-700 transition-colors">Organisations</a></li>
-        </ul>
-      </nav>
-    </aside>
-    
-
-    <div class="flex-1 p-10">
-      <div id="navbar-placeholder"></div>
-      <div class="container mx-auto">
-       
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div class="bg-blue-600 text-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-            <h3 class="text-2xl font-semibold">01</h3>
-            <p class="text-lg mt-2">Holiday List</p>
-            <a href="./holidaylist.html" class="text-white underline mt-3 inline-block transition-all duration-300 hover:text-blue-200">View <i class="fas fa-arrow-circle-right"></i></a>
+      <div class="flex items-center space-x-4 ml-auto">
+        <div class="dropdown">
+          <div id="notification-icon" class="relative cursor-pointer pulse-animation" title="Notifications">
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge">3</span>
           </div>
-
-          <div class="bg-green-600 text-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-            <h3 class="text-2xl font-semibold">02</h3>
-            <p class="text-lg mt-2">Policies</p>
-            <a href="./policies.html" class="text-white underline mt-3 inline-block transition-all duration-300 hover:text-green-200">View <i class="fas fa-arrow-circle-right"></i></a>
-          </div>
-
-          <div class="bg-yellow-600 text-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-            <h3 class="text-2xl font-semibold">03</h3>
-            <p class="text-lg mt-2">Birthday List</p>
-            <a href="#" class="text-white underline mt-3 inline-block transition-all duration-300 hover:text-yellow-200">View <i class="fas fa-arrow-circle-right"></i></a>
-          </div>
-
-          <div class="bg-red-600 text-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-            <h3 class="text-2xl font-semibold">04</h3>
-            <p class="text-lg mt-2">Events</p>
-            <a href="#" class="text-white underline mt-3 inline-block transition-all duration-300 hover:text-red-200">View <i class="fas fa-arrow-circle-right"></i></a>
+          <div class="dropdown-content">
+            <a href="#">Notification 1</a>
+            <a href="#">Notification 2</a>
+            <a href="#">Notification 3</a>
           </div>
         </div>
+        <div class="dropdown">
+          <div id="profile-icon" class="cursor-pointer" title="Profile">
+            <i class="fas fa-user-circle"></i>
+          </div>
+          <div class="dropdown-content">
+            <a href="#">Profile</a>
+            <a href="#">Settings</a>
+            <a href="#">About</a>
+            <a href="./login.html" id="logout-button">Logout</a>
+          </div>
+        </div>
+        <button id="dark-mode-toggle" class="text-gray-900 hover:text-blue-500" aria-label="Toggle dark mode">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </nav>
+ 
+ 
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-8">
+      <!-- Card 1 -->
+      <div class="bg-gradient-to-r from-blue-500 to-blue-700 text-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300 hover:shadow-2xl">
+        <h3 class="text-3xl font-bold mb-2">01</h3>
+        <p class="text-lg">Holiday List</p>
+        <a href="./holidaylist.html" class="flex items-center mt-4 text-white underline hover:text-blue-300">
+          View <i class="fas fa-arrow-circle-right ml-2"></i>
+        </a>
+      </div>
+    
+      <!-- Card 2 -->
+      <div class="bg-gradient-to-r from-green-500 to-green-700 text-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300 hover:shadow-2xl">
+        <h3 class="text-3xl font-bold mb-2">02</h3>
+        <p class="text-lg">Policies</p>
+        <a href="./policies.html" class="flex items-center mt-4 text-white underline hover:text-green-300">
+          View <i class="fas fa-arrow-circle-right ml-2"></i>
+        </a>
+      </div>
+    
+      <!-- Card 3 -->
+      <div class="bg-gradient-to-r from-yellow-500 to-yellow-700 text-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300 hover:shadow-2xl">
+        <h3 class="text-3xl font-bold mb-2">03</h3>
+        <p class="text-lg">Birthday List</p>
+        <a href="#" class="flex items-center mt-4 text-white underline hover:text-yellow-300">
+          View <i class="fas fa-arrow-circle-right ml-2"></i>
+        </a>
+      </div>
+    
+      <!-- Card 4 -->
+      <div class="bg-gradient-to-r from-red-500 to-red-700 text-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300 hover:shadow-2xl">
+        <h3 class="text-3xl font-bold mb-2">04</h3>
+        <p class="text-lg">Events</p>
+        <a href="#" class="flex items-center mt-4 text-white underline hover:text-red-300">
+          View <i class="fas fa-arrow-circle-right ml-2"></i>
+        </a>
       </div>
     </div>
-  </div>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      fetch('navbar.html')
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById('navbar-placeholder').innerHTML = data;
-
-          // Add event listener for logout
-          const logoutButton = document.querySelector('.logout-btn');
-          if (logoutButton) {
-            logoutButton.addEventListener('click', function(e) {
-              e.preventDefault();
-              sessionStorage.clear();
-              window.location.href = '../HTML/login.html';
-            });
-          }
-        })
-        .catch(error => console.error('Error loading navbar:', error));
-    });
-  </script>
+    
+ 
   <script src="../JAVASCRIPT/resource.js"></script>
 </body>
 </html>

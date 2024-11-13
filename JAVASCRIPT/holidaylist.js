@@ -38,3 +38,27 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+
+const toggleButton = document.getElementById('toggle-button');
+const sidebar = document.getElementById('sidebar');
+const mainContent = document.getElementById('main-content');
+
+toggleButton.addEventListener('click', () => {
+  sidebar.classList.toggle('sidebar-hidden');
+  mainContent.classList.toggle('ml-0');
+});
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  const menuItems = document.querySelectorAll(".sidebar a");
+
+  menuItems.forEach(item => {
+    item.addEventListener("click", function() {
+      // Remove active class from all menu items
+      menuItems.forEach(i => i.classList.remove("active"));
+      // Add active class to the clicked menu item
+      this.classList.add("active");
+    });
+  });
+});
