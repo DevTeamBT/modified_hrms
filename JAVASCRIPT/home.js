@@ -23,10 +23,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         try {
             await loadIndex();
-            loadSwipes(userId, token); // Pass userId and token
             displayGreeting(userId, role);
             displayQuote();
             checkSigninStatus(userId);
+            loadSwipes(userId, token); // Pass userId and token
         } catch (error) {
             console.error('Error loading index or other content:', error);
         }
@@ -142,8 +142,9 @@ async function submitSignin() {
     const location = document.getElementById("location").value;
     const token = getTokenFromCookies('authToken');
     const userId = sessionStorage.getItem('userId');
+    // const attendenceId =localStorage.getItem('attendenceId');
     const today = new Date().toISOString().split('T')[0];
-
+  
     if (!token || !userId) {
         alert("Authentication error. Please log in again.");
         redirectToLogin();
@@ -182,16 +183,16 @@ async function submitSignin() {
             }
 
             const responseData = await response.json();
-            const attendanceId = responseData._id;
+            const attendenceId = responseData._id;
 
-            if (!attendanceId) {
+            if (!attendenceId) {
                 console.error("Server did not return an attendance ID.");
                 alert("Sign-in was successful, but attendance ID is missing. Please contact support.");
                 return;
             }
-            console.log("Attendance ID from server:", attendanceId);
+            console.log("Attendance ID1 from server:", attendenceId);
 
-            localStorage.setItem(`${userId}_attendanceId`, attendanceId);
+            localStorage.setItem(`${userId}_attendenceId`, attendenceId);
             localStorage.setItem(`${userId}_signinTime`, signinTime);
             localStorage.setItem(`${userId}_signinDate`, today);
             localStorage.setItem(`${userId}_workLocation`, location);
@@ -199,7 +200,9 @@ async function submitSignin() {
             document.getElementById('signin-time').textContent = `Signed in at: ${signinTime} (Location: ${location.replace('-', ' ')})`;
             document.getElementById('signin-btn').style.display = 'none';
             document.getElementById('signout-btn').style.display = 'block';
-            await loadSwipes(attendanceId, token);
+            console.log("attendenceId4: ", attendenceId, "token4: ", token);
+
+            await loadSwipes(attendenceId, token);
         } catch (error) {
             console.error('Error during sign-in:', error);
             alert('An error occurred while signing in.');
@@ -209,21 +212,14 @@ async function submitSignin() {
     }
 
 sessionStorage.setItem('userId', userId);
-
-// After sign-in, call loadSwipes with the correct userId
-await loadSwipes(_id, token);
-}
-function showSignoutConfirmation() {
-    const modal = new bootstrap.Modal(document.getElementById('signoutConfirmationModal'));
-    modal.show(); // Show the modal
 }
 async function submitSignout() {
     const userId = sessionStorage.getItem('userId');
-    const attendanceId = localStorage.getItem(`${userId}_attendanceId`);
+    const attendenceId = localStorage.getItem(`${userId}_attendenceId`);
     const token = getTokenFromCookies('authToken');
     const location = localStorage.getItem(`${userId}_workLocation`);
 
-    if (!attendanceId) {
+    if (!attendenceId) {
         alert("Attendance ID not found. Please sign in first.");
         return;
     }
@@ -241,7 +237,7 @@ async function submitSignout() {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify({ attendanceId,userId, location })
+            body: JSON.stringify({ attendenceId,userId, location })
         });
 
         if (!response.ok) {
@@ -252,11 +248,15 @@ async function submitSignout() {
         }
 
         alert("You have successfully signed out.");
+
+         // Fetch the updated swipe data with sign-out time
+         await loadSwipes(attendenceId, token);  // Re-fetch the swipe history
+
          // Save and display the sign-out time
          localStorage.setItem(`${userId}_signoutTime`, signoutTime);
          document.getElementById('signin-time').textContent = `Signed out at: ${signoutTime} (Location: ${location.replace('-', ' ')})`;
          // Clear attendance-related data
-        localStorage.removeItem(`${userId}_attendanceId`);
+        localStorage.removeItem(`${userId}_attendenceId`);
         localStorage.removeItem(`${userId}_signinTime`);
         localStorage.removeItem(`${userId}_signinDate`);
         localStorage.removeItem(`${userId}_workLocation`);
@@ -284,21 +284,16 @@ function showSignoutConfirmation() {
         submitSignout();
     }
 }
-async function loadSwipes(attendanceId, token) {
-    if (!attendanceId || !token) {
-        console.error("Attendance ID or Token is missing.");
-        document.getElementById('swipes-list').innerHTML = '<p>No swipe history available.</p>';
-        return;
-    }
-
+async function loadSwipes(attendenceId, token) {
+    console.log("attendenceId3: ", attendenceId, "token3: ", token);
     try {
-        const response = await fetch(`http://172.16.2.6:4000/swipes/${_id}`, {
+        const response = await fetch(`http://172.16.2.6:4000/attendence/${attendenceId}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
             }
         });
-
+        console.log("response: ", response);
         if (!response.ok) {
             if (response.status === 404) {
                 console.error("Swipes not found for the given attendance ID.");
@@ -311,6 +306,9 @@ async function loadSwipes(attendanceId, token) {
         }
 
         const swipesData = await response.json();
+        console.log("Received swipes data:", swipesData);
+        // Store the fetched swipes data in localStorage
+        localStorage.setItem('swipesData', JSON.stringify(swipesData));
         renderSwipes(swipesData);
     } catch (error) {
         console.error('Error loading swipes:', error);
@@ -320,20 +318,58 @@ async function loadSwipes(attendanceId, token) {
 
 function renderSwipes(swipesData) {
     const swipesList = document.getElementById('swipes-list');
-    swipesList.innerHTML = '';
+    swipesList.innerHTML = '';  // Clear any previous content
 
-    if (!swipesData || swipesData.length === 0) {
+    // Check if swipesData is an object with required properties
+    if (!swipesData || !swipesData.signInTime || swipesData.signInTime === null) {
         swipesList.innerHTML = '<p>No swipe history found.</p>';
+        console.error("Invalid swipe data:", swipesData);
         return;
     }
 
-    swipesData.forEach(swipe => {
-        const li = document.createElement('li');
-        li.classList.add('swipe');
-        li.innerHTML = `<p>${swipe.location} - ${formatISTTime(new Date(swipe.time))}</p>`;
-        swipesList.appendChild(li);
-    });
+    console.log("swipesData: ", swipesData);
+
+    // If it's valid, create the list item
+    const swipe = swipesData;
+    // Validate the presence of signInTime
+    if (!swipe.signInTime) {
+        console.error("Invalid swipe record:", swipe);
+        return; // Skip invalid swipe record
+    }
+
+    const li = document.createElement('li');
+    li.classList.add('swipe');
+
+    // Format sign-in and sign-out times safely
+    const signInDisplay = swipe.signInTime 
+        ? `Sign-in Time: ${new Date(swipe.signInTime).toLocaleString()}` 
+        : "Sign-in not recorded";
+
+    // Check if signOutTime is null or not
+    const signOutDisplay = swipe.signOutTime 
+        ? `Sign-out Time: ${new Date(swipe.signOutTime).toLocaleString()}` 
+        : "Not signed out";
+
+    // Combine both sign-in and sign-out time into one string
+    li.textContent = `${signInDisplay}, ${signOutDisplay}`;
+
+    // Append the list item to the container
+    swipesList.appendChild(li);
 }
+// Check for saved swipes data in localStorage when the page loads
+document.addEventListener('DOMContentLoaded', async () => {
+    const savedSwipesData = localStorage.getItem('swipesData');
+    
+    if (savedSwipesData) {
+        const swipesData = JSON.parse(savedSwipesData);
+        console.log('Loaded swipes from localStorage:', swipesData);
+        renderSwipes(swipesData);
+    } else {
+        console.log('No swipes data found in localStorage, fetching from server.');
+        // Fetch swipes data from the server if not available in localStorage
+        await loadSwipes(attendenceId, token);  // Replace with your actual values
+    }
+})
 window.onload = () => {
     displayGreeting();
     displayQuote();
